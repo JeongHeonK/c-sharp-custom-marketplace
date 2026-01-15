@@ -1,1 +1,89 @@
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options
+.vs/
+.vscode/
+
+# Resharper
+.idea/
+*.sln.iml
+*_ReSharper.CSPROJ
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+.nuget/packages/
+*.nuget.props
+*.nuget.targets
+
+# Test Results
+TestResults/
+*.trx
+*.coverage
+
+# Local test settings
+.localConfig
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# NUnit
+nunit-results.xml
+
+# Coverage
+OpenCover/
+coverage.cobertura.xml
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# WPF specific
+*.baml
+
+# Publish
+PublishProfiles/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE specific
+.vscode/settings.json
+.vscode/launch.json
+
+# Local environment
+.env
+.env.local
+appsettings.local.json
+
+# MCP server (use use-context7 in prompts instead)
 .mcp.json
+
+# Claude Code local settings
+.claude/settings.local.json
