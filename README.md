@@ -46,7 +46,7 @@ C# 및 WPF 개발을 위한 Claude Code 플러그인입니다. Modern C# 12/13, 
 - SOLID 원칙
 - GoF 디자인 패턴 적용 기회
 - Modern C# 기능 활용
-- Performance (메모리 할당, Span<T>, LOH)
+- Performance (메모리 할당, Span<T>, Memory<T>, LOH)
 - Async/Await 패턴
 - Security (SQL Injection, XSS 등)
 

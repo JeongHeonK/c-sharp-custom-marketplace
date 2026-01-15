@@ -87,7 +87,6 @@ public partial class MainViewModel(IUserService userService) : ObservableObject
 - Trigger, DataTrigger, EventTrigger
 - Attached Properties, Dependency Properties
 - Behavior pattern (Microsoft.Xaml.Behaviors)
-- x:Bind for compiled bindings (where supported)
 
 ## Architecture Principles
 
@@ -145,9 +144,7 @@ public partial class MainViewModel(IUserService userService) : ObservableObject
 - Avoid unnecessary UpdateSourceTrigger=PropertyChanged
 - Freeze Freezable objects
 - Minimize Visual Tree depth
-- Use `x:Load` for deferred loading
 - Virtualize ItemsControl with VirtualizingPanel
-- Use CompiledBindings where available
 
 ### Memory Management
 - Unsubscribe event handlers (use WeakReferenceMessenger)
