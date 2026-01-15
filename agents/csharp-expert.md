@@ -79,7 +79,7 @@ You are a C# and .NET platform expert with deep understanding of Object-Oriented
 - Avoid allocations in hot code paths
 - Be aware of Large Object Heap (>= 85KB)
 - Use `ArrayPool<T>` for temporary arrays
-- Prefer `StringBuilder` for string concatenation
+- Use `StringBuilder` for repeated string concatenation (loops, dynamic building)
 - Use `sealed` classes when inheritance is not needed
 - Consider `struct` for small, immutable value types
 

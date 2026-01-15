@@ -77,7 +77,7 @@ Identify areas in the code where these patterns could be applied:
 | **Collections** | Wrong collection type, multiple LINQ enumerations |
 | **Strings** | String concatenation in loops, missing StringBuilder |
 | **Boxing** | Unnecessary value type boxing |
-| **Span/Memory** | Buffer operations without Span<T> |
+| **Span/Memory** | Buffer operations without Span<T>, Memory<T> |
 
 ### Async Code Review
 - [ ] No `.Result` or `.Wait()` calls (deadlock risk)
