@@ -1,13 +1,54 @@
 # C# Marketplace Plugin
 
-C# 및 WPF 개발을 위한 Claude Code 플러그인입니다. OOP 원칙, SOLID 원칙, GoF 디자인 패턴에 중점을 둔 전문가 에이전트와 코드 리뷰 스킬을 제공합니다.
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)]()
+[![.NET](https://img.shields.io/badge/.NET-8%2F9-purple.svg)]()
+[![C#](https://img.shields.io/badge/C%23-12%2F13-green.svg)]()
+
+C# 및 WPF 개발을 위한 Claude Code 플러그인입니다. Modern C# 12/13, OOP 원칙, SOLID 원칙, GoF 디자인 패턴에 중점을 둔 전문가 에이전트와 코드 리뷰 스킬을 제공합니다.
 
 ## 주요 기능
 
-- **C# Expert Agent**: SOLID 원칙과 디자인 패턴을 적용한 C#/.NET 개발 전문가
-- **WPF Expert Agent**: 데이터 바인딩과 커스텀 컨트롤을 포함한 WPF/MVVM 개발 전문가
-- **Code Review Skill**: OOP/SOLID/GoF 관점의 체계적인 코드 리뷰
-- **Context7 MCP**: .NET 문서 검색을 위한 MCP 서버 자동 설정
+### Agents
+| Agent | 설명 |
+|-------|------|
+| **C# Expert** | Modern C# 12/13, SOLID 원칙, GoF 패턴, Performance 최적화 전문가 |
+| **WPF Expert** | CommunityToolkit.Mvvm, MVVM 패턴, 데이터 바인딩, Modern UI 전문가 |
+
+### Skills
+| Skill | 설명 |
+|-------|------|
+| **csharp-code-review** | OOP/SOLID/GoF + Performance/Security/Async 코드 리뷰 |
+
+### MCP Servers
+| Server | 설명 |
+|--------|------|
+| **Context7** | .NET, WPF, NuGet 공식 문서 검색 |
+
+## 지원 기능
+
+### Modern C# Features (C# 12/13)
+- Primary constructors
+- Collection expressions `[1, 2, 3]`
+- required / init properties
+- Pattern matching
+- Record types
+- params collections (C# 13)
+- System.Threading.Lock (C# 13)
+
+### CommunityToolkit.Mvvm
+- `[ObservableProperty]` Source Generator
+- `[RelayCommand]` / `[AsyncRelayCommand]`
+- `WeakReferenceMessenger` Pub/Sub
+- Dependency Injection Integration
+
+### Code Review 검토 항목
+- OOP 4대 원칙
+- SOLID 원칙
+- GoF 디자인 패턴 적용 기회
+- Modern C# 기능 활용
+- Performance (메모리 할당, Span<T>, LOH)
+- Async/Await 패턴
+- Security (SQL Injection, XSS 등)
 
 ## 설치 방법
 
@@ -50,13 +91,15 @@ c-sharp-marketplace/
 ```
 "User 엔티티에 대한 Repository 패턴 구현해줘"
 "이 코드를 SOLID 원칙에 맞게 리팩토링해줘"
-"이 객체 생성 로직에 Factory 패턴 적용해줘"
+"Primary constructor로 변환해줘"
+"Span<T>를 사용해서 성능 최적화해줘"
 ```
 
 #### WPF Expert Agent
 ```
-"로그인 뷰를 위한 ViewModel 만들어줘"
-"이 폼에 데이터 바인딩 구현해줘"
+"CommunityToolkit.Mvvm으로 ViewModel 만들어줘"
+"[ObservableProperty]와 [RelayCommand] 사용해서 구현해줘"
+"WeakReferenceMessenger로 ViewModel 간 통신 구현해줘"
 "날짜 선택용 커스텀 컨트롤 만들어줘"
 ```
 
@@ -73,13 +116,11 @@ c-sharp-marketplace/
 문서 검색을 위해 프롬프트에 "use context7"을 추가하세요:
 ```
 "C#에서 IAsyncEnumerable 사용법 알려줘 use context7"
-"WPF DataGrid 바인딩 예제 use context7"
-".NET 8 HttpClient 모범 사례 use context7"
+"CommunityToolkit.Mvvm ObservableProperty 예제 use context7"
+".NET 8 Span<T> 모범 사례 use context7"
 ```
 
 ## 코드 원칙
-
-이 플러그인은 다음 원칙들을 적용합니다:
 
 ### OOP 4대 원칙
 - 캡슐화 (Encapsulation)
@@ -112,16 +153,19 @@ c-sharp-marketplace/
 | 지역 변수, 매개변수 | camelCase | `userId`, `isActive` |
 | Private 필드 | _camelCase | `_repository`, `_logger` |
 | 인터페이스 | I 접두사 | `IRepository`, `IUserService` |
+| Async 메서드 | Async 접미사 | `GetByIdAsync` |
 
 ## 권장 프로젝트 구조
 
 ```
 /src
   /Models          - 도메인 모델
-  /ViewModels      - MVVM ViewModel
+  /ViewModels      - MVVM ViewModel (partial classes)
   /Views           - WPF XAML Views
   /Services        - 비즈니스 서비스
   /Repositories    - 데이터 접근 계층
+  /Messages        - Messenger 메시지 타입
+  /Converters      - IValueConverter 구현
   /Infrastructure  - 공통 인프라
 /tests
   /UnitTests       - 단위 테스트
@@ -132,7 +176,23 @@ c-sharp-marketplace/
 
 - Claude Code CLI
 - Node.js (Context7 MCP 서버용)
-- .NET SDK (C#/WPF 개발용)
+- .NET 8/9 SDK
+- Visual Studio 2022 / Rider
+
+## 변경 이력
+
+### v1.1.0
+- Modern C# 12/13 기능 지원 추가
+- CommunityToolkit.Mvvm Source Generators 가이드 추가
+- Performance Review 섹션 추가 (Span<T>, Memory<T>, LOH)
+- Async Code Review 체크리스트 추가
+- Security Review 섹션 추가
+
+### v1.0.0
+- 초기 릴리즈
+- C# Expert, WPF Expert 에이전트
+- Code Review 스킬
+- Context7 MCP 서버 설정
 
 ## 라이센스
 
