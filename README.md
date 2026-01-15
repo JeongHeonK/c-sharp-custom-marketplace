@@ -54,8 +54,8 @@ C# 및 WPF 개발을 위한 Claude Code 플러그인입니다. Modern C# 12/13, 
 
 ### 방법 1: Clone 후 설치
 ```bash
-git clone https://github.com/your-username/c-sharp-marketplace.git
-cd c-sharp-marketplace
+git clone https://github.com/JeongHeonK/c-sharp-custom-marketplace.git
+cd c-sharp-custom-marketplace
 claude plugins install .
 ```
 
