@@ -1,11 +1,11 @@
 ---
 name: csharp-code-review
-description: C# code review skill. Analyzes code quality from OOP, SOLID, and GoF design pattern perspectives and suggests improvements.
+description: C# code review skill. Analyzes code quality from OOP, SOLID, GoF design pattern, modern C# features, and performance perspectives.
 ---
 
 # C# Code Review Skill
 
-Systematically reviews C# code from OOP principles, SOLID principles, and GoF design pattern perspectives.
+Systematically reviews C# code from OOP principles, SOLID principles, GoF design patterns, modern C# features, and performance perspectives.
 
 ## Execution Steps
 
@@ -57,15 +57,52 @@ Identify areas in the code where these patterns could be applied:
 - Request processing chain → Chain of Responsibility
 - Undo/Redo → Command + Memento
 
+### Modern C# Features (C# 12/13)
+| Feature | When to Recommend |
+|---------|-------------------|
+| **Primary constructors** | Classes with simple initialization |
+| **Collection expressions** | Array/List initialization `[1, 2, 3]` |
+| **required properties** | Required initialization without constructor |
+| **init-only setters** | Immutable objects |
+| **record types** | Value-based equality, DTOs |
+| **Pattern matching** | Complex conditionals, type checking |
+| **File-scoped namespaces** | Reduce indentation |
+| **Raw string literals** | Multiline strings, JSON, SQL |
+
+### Performance Review
+| Category | Review Items |
+|----------|--------------|
+| **Memory Allocation** | Unnecessary allocations in hot paths, Large Object Heap (>= 85KB) |
+| **Async/Await** | Blocking calls (.Result, .Wait()), missing ConfigureAwait |
+| **Collections** | Wrong collection type, multiple LINQ enumerations |
+| **Strings** | String concatenation in loops, missing StringBuilder |
+| **Boxing** | Unnecessary value type boxing |
+| **Span/Memory** | Buffer operations without Span<T> |
+
+### Async Code Review
+- [ ] No `.Result` or `.Wait()` calls (deadlock risk)
+- [ ] `ConfigureAwait(false)` in library code
+- [ ] Proper cancellation token propagation
+- [ ] `ValueTask` for hot paths with cached results
+- [ ] `IAsyncEnumerable` for streaming data
+- [ ] No async void except event handlers
+
 ### Code Quality Review
-- [ ] Naming conventions (PascalCase, camelCase, _privateField)
-- [ ] Null safety (nullable reference types, null checks)
-- [ ] Exception handling (specific exception catch, proper logging)
-- [ ] Correct async/await usage (.ConfigureAwait, deadlock prevention)
+- [ ] Naming conventions (PascalCase, camelCase, _privateField, Async suffix)
+- [ ] Null safety (nullable reference types, `?.`, `??`, `??=`)
+- [ ] Exception handling (specific exceptions, `when` filters, proper logging)
 - [ ] IDisposable pattern compliance (using statements, Dispose implementation)
-- [ ] Collection usage (appropriate type selection, LINQ usage)
+- [ ] Collection usage (appropriate type selection, efficient LINQ)
 - [ ] Magic numbers/strings should be constants
 - [ ] Duplicate code elimination
+- [ ] Proper use of `sealed` for non-inheritable classes
+
+### Security Review
+- [ ] Input validation (SQL injection, XSS, path traversal)
+- [ ] Sensitive data handling (no hardcoded secrets, proper encryption)
+- [ ] Authentication/Authorization checks
+- [ ] Secure randomness (avoid `Random` for security)
+- [ ] XML external entity (XXE) prevention
 
 ## Step 3: Output Review Results
 
@@ -78,16 +115,42 @@ Identify areas in the code where these patterns could be applied:
 - File: {file path}
 - Overall Assessment: {Excellent/Good/Needs Improvement/Critical}
 - Major Issues: {N} items
+- .NET Version Compliance: {.NET 8/9 features utilization}
 
 ## SOLID Principles Analysis
 
 ### SRP Violation (Severity: High/Medium/Low)
 - Location: `ClassName.cs:line`
 - Problem: {description}
-- Suggestion: {improvement}
+- Suggestion: {improvement with code example}
 
 ### OCP Violation
 ...
+
+## Modern C# Opportunities
+
+### {Feature Name} Recommendation
+- Location: `file.cs:line`
+- Current: {old syntax}
+- Improved: {modern C# syntax}
+- Benefit: {explanation}
+
+## Performance Issues
+
+### {Issue Title} (Severity: High/Medium/Low)
+- Location: `file.cs:line`
+- Problem: {description with impact}
+- Current: {problematic code}
+- Improved: {optimized code}
+- Impact: {expected improvement}
+
+## Async Code Issues
+
+### {Issue Title}
+- Location: `file.cs:line`
+- Problem: {description}
+- Risk: {deadlock/performance/etc}
+- Solution: {code fix}
 
 ## Applicable Design Patterns
 
@@ -95,6 +158,13 @@ Identify areas in the code where these patterns could be applied:
 - Current code: {problem}
 - Benefits of applying: {description}
 - Example code: {brief example}
+
+## Security Concerns
+
+### {Issue Title} (Severity: Critical/High/Medium/Low)
+- Location: `file.cs:line`
+- Vulnerability: {description}
+- Remediation: {fix with code}
 
 ## Code Quality Issues
 
@@ -105,11 +175,13 @@ Identify areas in the code where these patterns could be applied:
 
 ## Positive Aspects
 - {mention well-written parts}
+- {good patterns already in use}
 
 ## Prioritized Improvements
-1. [High] {item}
-2. [Medium] {item}
-3. [Low] {item}
+1. [Critical] {security issues}
+2. [High] {SOLID violations, performance issues}
+3. [Medium] {code quality, modern features}
+4. [Low] {style improvements}
 ```
 
 ## Guidelines
@@ -117,3 +189,6 @@ Identify areas in the code where these patterns could be applied:
 - Provide improvements with concrete code examples.
 - Don't recommend over-engineering.
 - Make practical suggestions considering context.
+- Prioritize security issues first.
+- Consider the target .NET version when suggesting features.
+- Balance between modern features and team familiarity.
