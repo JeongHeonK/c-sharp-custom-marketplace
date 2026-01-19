@@ -1,6 +1,6 @@
 # C# Marketplace Plugin
 
-[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)]()
 [![.NET](https://img.shields.io/badge/.NET-8%2F9-purple.svg)]()
 [![C#](https://img.shields.io/badge/C%23-12%2F13-green.svg)]()
 
@@ -186,6 +186,10 @@ c-sharp-marketplace/
 - Visual Studio 2022 / Rider
 
 ## 변경 이력
+
+### v1.2.0
+- Marketplace 배포를 위한 marketplace.json 파일 추가
+- 플러그인 설치 방법 가이드 개선
 
 ### v1.1.0
 - Modern C# 12/13 기능 지원 추가

@@ -1,6 +1,6 @@
 {
   "name": "csharp-marketplace",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "C#/.NET 및 WPF 개발을 위한 플러그인. Modern C# 12/13, SOLID, GoF 디자인 패턴, CommunityToolkit.Mvvm 기반의 고품질 코드 작성 지원.",
   "mcpServers": "../.mcp.json"
 }
