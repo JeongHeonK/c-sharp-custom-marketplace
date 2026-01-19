@@ -18,10 +18,7 @@
         "name": "JeongHeonK"
       },
       "homepage": "https://github.com/JeongHeonK/c-sharp-custom-marketplace",
-      "repository": {
-        "type": "git",
-        "url": "https://github.com/JeongHeonK/c-sharp-custom-marketplace"
-      },
+      "repository": "https://github.com/JeongHeonK/c-sharp-custom-marketplace",
       "license": "MIT"
     }
   ]
