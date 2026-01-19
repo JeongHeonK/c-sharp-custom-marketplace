@@ -52,16 +52,22 @@ C# 및 WPF 개발을 위한 Claude Code 플러그인입니다. Modern C# 12/13, 
 
 ## 설치 방법
 
-### 방법 1: Clone 후 설치
+### 방법 1: GitHub에서 직접 설치 (권장)
+```bash
+# Claude Code CLI 내부에서
+/plugin install https://github.com/JeongHeonK/c-sharp-custom-marketplace
+```
+
+### 방법 2: Clone 후 로컬 설치
 ```bash
 git clone https://github.com/JeongHeonK/c-sharp-custom-marketplace.git
 cd c-sharp-custom-marketplace
-claude plugins install .
-```
 
-### 방법 2: 레지스트리에서 설치 (배포 후)
-```bash
-claude plugins install c-sharp-marketplace
+# Claude Code CLI 내부에서
+/plugin install .
+
+# 또는 외부 쉘에서
+claude --plugin-dir .
 ```
 
 ## 플러그인 구조
