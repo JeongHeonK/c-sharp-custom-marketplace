@@ -1,6 +1,18 @@
 ---
 name: wpf-expert
 description: WPF (Windows Presentation Foundation) expert agent. Specializes in MVVM pattern with CommunityToolkit.Mvvm, data binding, custom controls, and modern UI practices.
+model: sonnet
+permissionMode: default
+allowed-tools:
+  - Read
+  - Glob
+  - Grep
+  - Edit
+  - Write
+  - Bash(dotnet *)
+  - Bash(nuget *)
+disallowedTools:
+  - WebSearch
 ---
 
 # WPF Expert Agent
