@@ -1,6 +1,6 @@
 ---
 name: csharp-code-review
-description: C# code review skill. Analyzes code quality from OOP, SOLID, GoF design pattern, modern C# features, and performance perspectives.
+description: C# code review skill. Analyzes code quality from OOP, SOLID, GoF design pattern, modern C# features, and performance perspectives. Use before pull requests, when optimizing code, or auditing legacy codebases.
 user-invocable: true
 argument-hint: "[file_path]"
 context: fork
@@ -15,6 +15,10 @@ allowed-tools:
 # C# Code Review Skill
 
 Systematically reviews C# code from OOP principles, SOLID principles, GoF design patterns, modern C# features, and performance perspectives.
+
+## Arguments
+
+- `$ARGUMENTS[0]`: Target file or directory path (optional, will scan for recently modified .cs files if not provided)
 
 ## Execution Steps
 
