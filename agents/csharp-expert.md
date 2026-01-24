@@ -1,6 +1,18 @@
 ---
 name: csharp-expert
 description: C# and .NET expert agent. Writes and analyzes high-quality C# code following SOLID principles, GoF design patterns, and clean code practices with modern C# 12/13 features.
+model: sonnet
+permissionMode: default
+allowed-tools:
+  - Read
+  - Glob
+  - Grep
+  - Edit
+  - Write
+  - Bash(dotnet *)
+  - Bash(nuget *)
+disallowedTools:
+  - WebSearch
 ---
 
 # C# Expert Agent
