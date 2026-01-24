@@ -83,6 +83,7 @@ public partial class {EntityName}ViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasSelection))]
+    [NotifyCanExecuteChangedFor(nameof(DeleteCommand))]
     private {EntityName}? _selected{EntityName};
 
     [ObservableProperty]
@@ -97,9 +98,9 @@ public partial class {EntityName}ViewModel : ObservableObject
     [RelayCommand]
     private async Task LoadAsync(CancellationToken cancellationToken = default)
     {
+        IsLoading = true;
         try
         {
-            IsLoading = true;
             // Load logic
         }
         finally
@@ -117,16 +118,20 @@ public partial class {EntityName}ViewModel : ObservableObject
 
     private bool CanSave() => IsModified && Selected{EntityName} is not null;
 
-    [RelayCommand]
-    private void Delete()
+    [RelayCommand(CanExecute = nameof(CanDelete))]
+    private async Task DeleteAsync(CancellationToken cancellationToken = default)
     {
         if (Selected{EntityName} is null) return;
+
+        await _{entityName}Service.DeleteAsync(Selected{EntityName}.Id, cancellationToken);
 
         WeakReferenceMessenger.Default.Send(
             new {EntityName}DeletedMessage(Selected{EntityName}));
 
         Selected{EntityName} = null;
     }
+
+    private bool CanDelete() => Selected{EntityName} is not null;
 }
 ```
 
