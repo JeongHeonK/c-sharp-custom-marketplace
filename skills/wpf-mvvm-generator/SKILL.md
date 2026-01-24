@@ -1,6 +1,6 @@
 ---
 name: wpf-mvvm-generator
-description: WPF MVVM code generator. Creates ViewModel, View, and Model with CommunityToolkit.Mvvm source generators.
+description: WPF MVVM code generator. Creates ViewModel, View, and Model with CommunityToolkit.Mvvm source generators. Use when scaffolding new WPF features or entities following MVVM pattern.
 user-invocable: true
 argument-hint: "<entity_name> [type]"
 context: fork

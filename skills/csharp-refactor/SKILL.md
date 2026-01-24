@@ -1,6 +1,6 @@
 ---
 name: csharp-refactor
-description: C# code refactoring skill. Applies SOLID principles, extracts methods/classes, introduces design patterns, and modernizes syntax.
+description: C# code refactoring skill. Applies SOLID principles, extracts methods/classes, introduces design patterns, and modernizes syntax. Use when improving code maintainability, addressing code smells, or modernizing legacy C# code.
 user-invocable: true
 argument-hint: "[file_path] [refactor_type]"
 context: fork
