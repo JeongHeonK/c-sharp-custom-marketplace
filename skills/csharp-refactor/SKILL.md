@@ -71,7 +71,8 @@ Based on `$ARGUMENTS[1]` or analyze all categories:
 | `new List<T> { ... }` | Collection expressions `[...]` |
 | Multiple null checks | Pattern matching, `?.`, `??` |
 | Verbose switch statements | Switch expressions |
-| Manual INPC implementation | `required`, `init` |
+| Manual INPC implementation | `[ObservableProperty]` (CommunityToolkit.Mvvm) |
+| Mutable properties (non-MVVM) | `required`, `init` for immutability |
 | Class for simple data | Record types |
 | Traditional foreach | LINQ where appropriate |
 
