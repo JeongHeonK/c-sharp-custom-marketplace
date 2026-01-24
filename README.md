@@ -1,10 +1,11 @@
 # C# Marketplace Plugin
 
-[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)]()
 [![.NET](https://img.shields.io/badge/.NET-8%2F9-purple.svg)]()
 [![C#](https://img.shields.io/badge/C%23-12%2F13-green.svg)]()
+[![Claude Code](https://img.shields.io/badge/Claude_Code-2.1.0+-orange.svg)]()
 
-C# 및 WPF 개발을 위한 Claude Code 플러그인입니다. Modern C# 12/13, OOP 원칙, SOLID 원칙, GoF 디자인 패턴에 중점을 둔 전문가 에이전트와 코드 리뷰 스킬을 제공합니다.
+C# 및 WPF 개발을 위한 Claude Code 플러그인입니다. Modern C# 12/13, OOP 원칙, SOLID 원칙, GoF 디자인 패턴에 중점을 둔 전문가 에이전트와 코드 리뷰/리팩토링/MVVM 생성 스킬을 제공합니다.
 
 ## 주요 기능
 
@@ -18,6 +19,8 @@ C# 및 WPF 개발을 위한 Claude Code 플러그인입니다. Modern C# 12/13, 
 | Skill | 설명 |
 |-------|------|
 | **csharp-code-review** | OOP/SOLID/GoF + Performance/Security/Async 코드 리뷰 |
+| **csharp-refactor** | SOLID 원칙 적용, 디자인 패턴 도입, Modern C# 문법 전환 |
+| **wpf-mvvm-generator** | CommunityToolkit.Mvvm 기반 ViewModel/View/Model 생성 |
 
 ### MCP Servers
 | Server | 설명 |
@@ -80,8 +83,12 @@ c-sharp-marketplace/
 │   ├── csharp-expert.md     # C#/.NET 전문가 에이전트
 │   └── wpf-expert.md        # WPF/MVVM 전문가 에이전트
 ├── skills/
-│   └── csharp-code-review/
-│       └── SKILL.md         # 코드 리뷰 스킬
+│   ├── csharp-code-review/
+│   │   └── SKILL.md         # 코드 리뷰 스킬
+│   ├── csharp-refactor/
+│   │   └── SKILL.md         # 리팩토링 스킬
+│   └── wpf-mvvm-generator/
+│       └── SKILL.md         # MVVM 생성 스킬
 ├── .mcp.json                # MCP 서버 설정
 ├── CLAUDE.md                # 프로젝트 컨벤션
 └── README.md
@@ -115,6 +122,21 @@ c-sharp-marketplace/
 ```
 /csharp-code-review
 /csharp-code-review src/Services/UserService.cs
+```
+
+#### 코드 리팩토링
+```
+/csharp-refactor                                    # 전체 분석
+/csharp-refactor src/Services/UserService.cs        # 특정 파일
+/csharp-refactor src/Services/UserService.cs solid  # SOLID 리팩토링만
+/csharp-refactor src/Services/UserService.cs modern # Modern C# 문법 전환
+```
+
+#### MVVM 코드 생성
+```
+/wpf-mvvm-generator User                    # User에 대한 전체 MVVM 생성
+/wpf-mvvm-generator Product viewmodel       # ProductViewModel만 생성
+/wpf-mvvm-generator Order view              # OrderView만 생성
 ```
 
 ### MCP 서버 (Context7)
@@ -180,12 +202,45 @@ c-sharp-marketplace/
 
 ## 요구사항
 
-- Claude Code CLI
-- Node.js (Context7 MCP 서버용)
+- **Claude Code CLI 2.1.0+** (필수)
+- Node.js 18+ (Context7 MCP 서버용)
 - .NET 8/9 SDK
-- Visual Studio 2022 / Rider
+- Visual Studio 2022 / JetBrains Rider
 
 ## 변경 이력
+
+### v1.3.0 (2025-01-24)
+
+**Claude Code 2.1.x 호환성 업데이트**
+
+이번 업데이트는 Claude Code 2.0.x ~ 2.1.x 릴리스 노트의 주요 변경사항을 반영합니다.
+
+#### Agent 업데이트
+| 항목 | 설명 | 관련 버전 |
+|------|------|-----------|
+| `model` field | 에이전트가 사용할 모델 지정 (sonnet/opus/haiku) | v2.0.64 |
+| `permissionMode` field | 에이전트 권한 모드 설정 | v2.0.43 |
+| `allowed-tools` | YAML 리스트 형태 도구 허용 목록 | v2.1.0 |
+| `disallowedTools` | 명시적 도구 차단 목록 | v2.0.30 |
+
+#### Skill 업데이트
+| 항목 | 설명 | 관련 버전 |
+|------|------|-----------|
+| `context: fork` | 포크된 서브에이전트 컨텍스트에서 실행 | v2.1.0 |
+| `argument-hint` | 슬래시 커맨드 인자 힌트 표시 | v2.1.0 |
+| `user-invocable` | 슬래시 커맨드 메뉴 표시 여부 | v2.1.3 |
+| `skills` field | 서브에이전트용 스킬 자동 로드 | v2.1.0 |
+| `$ARGUMENTS[0]` | 새로운 인자 접근 문법 (기존 `$ARGUMENTS.0` 대체) | v2.1.19 |
+
+#### 새로운 Skills
+- **csharp-refactor**: SOLID 원칙 적용, 디자인 패턴 도입, Modern C# 문법 전환
+- **wpf-mvvm-generator**: CommunityToolkit.Mvvm 기반 ViewModel/View/Model 코드 생성
+
+#### 기타
+- LSP 도구 지원 추가 (go-to-definition, find-references, hover) - v2.0.74
+- 새로운 Task Management System 지원 - v2.1.16
+
+---
 
 ### v1.2.0
 - Marketplace 배포를 위한 marketplace.json 파일 추가
