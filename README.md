@@ -65,23 +65,12 @@ npx skills add JeongHeonK/c-sharp-custom-marketplace --skill csharp-code-review
 npx skills add JeongHeonK/c-sharp-custom-marketplace --skill csharp-refactor wpf-mvvm-generator
 ```
 
-### 방법 2: Claude Code 플러그인 시스템으로 설치
-```bash
-# 1. Marketplace 추가
-/plugin marketplace add JeongHeonK/c-sharp-custom-marketplace
-
-# 2. 플러그인 설치
-/plugin install csharp-marketplace@JeongHeonK-c-sharp-custom-marketplace
-```
-
-또는 `/plugin` 명령어로 UI를 열고 **Discover** 탭에서 직접 설치할 수 있습니다.
-
-### 설치 범위 (Scope)
-
-`/plugin` UI에서 설치 시 범위를 선택할 수 있습니다:
-- **User scope**: 모든 프로젝트에서 사용 (기본값)
-- **Project scope**: 해당 저장소의 모든 협업자가 사용
-- **Local scope**: 해당 저장소에서 본인만 사용
+### 방법 2: Claude Code UI에서 설치
+1. `/plugin` 입력하여 플러그인 매니저 열기
+2. **Tab** 키로 **Marketplaces** 탭 이동
+3. **Add Marketplace** 선택 후 Enter
+4. 경로 입력: `JeongHeonK/c-sharp-custom-marketplace`
+5. **Discover** 탭에서 원하는 스킬 선택하여 설치
 
 ## 플러그인 구조
 
