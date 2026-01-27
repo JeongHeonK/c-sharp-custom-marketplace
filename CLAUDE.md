@@ -2,7 +2,7 @@
 
 ## Overview
 
-C#/.NET 및 WPF 개발을 위한 Claude Code 플러그인 (v1.3.0)
+C#/.NET 및 WPF 개발을 위한 Claude Code 플러그인 (v1.4.0)
 
 ## Tech Stack
 
