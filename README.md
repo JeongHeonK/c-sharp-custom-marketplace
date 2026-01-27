@@ -3,7 +3,7 @@
 [![Version](https://img.shields.io/badge/version-1.4.0-blue.svg)]()
 [![.NET](https://img.shields.io/badge/.NET-8%2F9-purple.svg)]()
 [![C#](https://img.shields.io/badge/C%23-12%2F13-green.svg)]()
-[![Claude Code](https://img.shields.io/badge/Claude_Code-2.1.x+-orange.svg)]()
+[![Claude Code](https://img.shields.io/badge/Claude_Code-2.1.3+-orange.svg)]()
 
 C# 및 WPF 개발을 위한 Claude Code 플러그인입니다. Modern C# 12/13, OOP 원칙, SOLID 원칙, GoF 디자인 패턴에 중점을 둔 전문가 에이전트와 코드 리뷰/리팩토링/MVVM 생성 스킬을 제공합니다.
 
