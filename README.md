@@ -55,28 +55,22 @@ C# 및 WPF 개발을 위한 Claude Code 플러그인입니다. Modern C# 12/13, 
 
 ## 설치 방법
 
-Marketplace 플러그인은 2단계로 설치합니다: **Marketplace 추가** → **플러그인 설치**
-
-### 방법 1: GitHub에서 설치 (권장)
+### 방법 1: npx로 설치 (권장)
 ```bash
-# 1. Marketplace 추가
-/plugin marketplace add JeongHeonK/c-sharp-custom-marketplace
+# 모든 스킬 설치
+npx skills add JeongHeonK/c-sharp-custom-marketplace
 
-# 2. 플러그인 설치
-/plugin install csharp-marketplace@JeongHeonK-c-sharp-custom-marketplace
+# 특정 스킬만 설치
+npx skills add JeongHeonK/c-sharp-custom-marketplace --skill csharp-code-review
+npx skills add JeongHeonK/c-sharp-custom-marketplace --skill csharp-refactor wpf-mvvm-generator
 ```
 
-또는 `/plugin` 명령어로 UI를 열고 **Discover** 탭에서 직접 설치할 수 있습니다.
-
-### 방법 2: Clone 후 로컬 설치
-```bash
-git clone https://github.com/JeongHeonK/c-sharp-custom-marketplace.git
-cd c-sharp-custom-marketplace
-
-# Claude Code CLI 내부에서
-/plugin marketplace add .
-/plugin install csharp-marketplace@c-sharp-marketplace
-```
+### 방법 2: Claude Code UI에서 설치
+1. `/plugin` 입력하여 플러그인 매니저 열기
+2. **Tab** 키로 **Marketplaces** 탭 이동
+3. **Add Marketplace** 선택 후 Enter
+4. 경로 입력: `JeongHeonK/c-sharp-custom-marketplace`
+5. **Discover** 탭에서 원하는 스킬 선택하여 설치
 
 ### 설치 범위 (Scope)
 
