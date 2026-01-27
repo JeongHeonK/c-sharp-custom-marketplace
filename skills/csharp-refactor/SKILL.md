@@ -11,7 +11,6 @@ allowed-tools:
   - Grep
   - Edit
   - Write
-  - LSP
 ---
 
 # C# Refactoring Skill

@@ -10,8 +10,6 @@ allowed-tools:
   - Glob
   - Write
   - Edit
-skills:
-  - wpf-expert
 ---
 
 # WPF MVVM Generator Skill
