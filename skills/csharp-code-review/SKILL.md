@@ -9,7 +9,6 @@ allowed-tools:
   - Read
   - Glob
   - Grep
-  - LSP
 ---
 
 # C# Code Review Skill
