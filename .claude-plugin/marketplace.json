@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "C#/.NET 및 WPF 개발을 위한 플러그인. Modern C# 12/13, SOLID, GoF 디자인 패턴, CommunityToolkit.Mvvm 기반의 고품질 코드 작성 지원.",
-    "version": "1.4.0"
+    "version": "1.5.0"
   },
   "plugins": [
     {
@@ -16,7 +16,7 @@
         "repo": "JeongHeonK/c-sharp-custom-marketplace"
       },
       "description": "C#/.NET 및 WPF 개발을 위한 플러그인. Modern C# 12/13, SOLID, GoF 디자인 패턴, CommunityToolkit.Mvvm 기반의 고품질 코드 작성 지원.",
-      "version": "1.4.0",
+      "version": "1.5.0",
       "author": {
         "name": "JeongHeonK"
       },
