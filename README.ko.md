@@ -1,6 +1,6 @@
 # C# Marketplace Plugin
 
-[![Version](https://img.shields.io/badge/version-1.4.0-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-1.5.0-blue.svg)]()
 [![.NET](https://img.shields.io/badge/.NET-8%2F9-purple.svg)]()
 [![C#](https://img.shields.io/badge/C%23-12%2F13-green.svg)]()
 [![Claude Code](https://img.shields.io/badge/Claude_Code-2.1.3+-orange.svg)]()
@@ -21,6 +21,9 @@ C# 및 WPF 개발을 위한 Claude Code 플러그인입니다. Modern C# 12/13, 
 | **csharp-code-review** | OOP/SOLID/GoF + Performance/Security/Async 코드 리뷰 |
 | **csharp-refactor** | SOLID 원칙 적용, 디자인 패턴 도입, Modern C# 문법 전환 |
 | **wpf-mvvm-generator** | CommunityToolkit.Mvvm 기반 ViewModel/View/Model 생성 |
+| **csharp-best-practices** | C# 12/.NET 8 코드 작성 가이드라인 knowledge-base (12개 규칙, vercel-react-best-practices 3-tier 아키텍처 참조) |
+| **csharp-tdd-develop** | TDD 기반 C# 개발 (Red-Green-Refactor 워크플로우) |
+| **csharp-test-develop** | 기존 C# 코드에 테스트 코드 작성 |
 
 ### MCP Servers
 | Server | 설명 |
@@ -89,10 +92,22 @@ c-sharp-marketplace/
 │   ├── csharp-expert.md     # C#/.NET 전문가 에이전트
 │   └── wpf-expert.md        # WPF/MVVM 전문가 에이전트
 ├── skills/
+│   ├── csharp-best-practices/
+│   │   ├── SKILL.md         # 베스트 프랙티스 가이드라인 스킬
+│   │   ├── AGENTS.md        # Knowledge-base 에이전트
+│   │   └── rules/           # 12개 가이드라인 규칙 파일
 │   ├── csharp-code-review/
 │   │   └── SKILL.md         # 코드 리뷰 스킬
 │   ├── csharp-refactor/
 │   │   └── SKILL.md         # 리팩토링 스킬
+│   ├── csharp-tdd-develop/
+│   │   ├── SKILL.md         # TDD 워크플로우 조율 스킬
+│   │   └── scripts/
+│   │       └── test-detector.js  # .csproj 테스트 환경 감지
+│   ├── csharp-test-develop/
+│   │   ├── SKILL.md         # 테스트 코드 작성 스킬
+│   │   └── references/
+│   │       └── csharp-test-patterns.md  # C# 테스트 패턴 가이드
 │   └── wpf-mvvm-generator/
 │       └── SKILL.md         # MVVM 생성 스킬
 ├── .mcp.json                # MCP 서버 설정
@@ -138,6 +153,25 @@ c-sharp-marketplace/
 /csharp-refactor src/Services/UserService.cs        # 특정 파일
 /csharp-refactor src/Services/UserService.cs solid  # SOLID 리팩토링만
 /csharp-refactor src/Services/UserService.cs modern # Modern C# 문법 전환
+```
+
+#### 베스트 프랙티스 가이드라인
+```
+/csharp-best-practices                      # 전체 규칙 목록
+/csharp-best-practices primary-constructor  # 특정 토픽
+/csharp-best-practices record              # Record 타입 가이드
+```
+
+#### TDD 개발
+```
+/csharp-tdd-develop UserService            # UserService TDD 워크플로우
+/csharp-tdd-develop 주문 처리 서비스        # 주문 처리 서비스 TDD 워크플로우
+```
+
+#### 테스트 코드 작성
+```
+/csharp-test-develop src/Services/UserService.cs  # 파일 대상 테스트 작성
+/csharp-test-develop OrderService                  # 클래스 찾아서 테스트 작성
 ```
 
 #### MVVM 코드 생성
@@ -216,6 +250,21 @@ c-sharp-marketplace/
 - Visual Studio 2022 / JetBrains Rider
 
 ## 변경 이력
+
+### v1.5.0 (2025-01-30)
+
+**플러그인 모듈화**
+
+베스트 프랙티스, TDD 개발, 테스트 코드 작성을 위한 새로운 스킬을 추가했습니다. `csharp-best-practices` 스킬은 [vercel-react-best-practices](https://github.com/anthropics/claude-code/tree/main/skills/vercel-react-best-practices)의 3-tier 아키텍처(SKILL.md + AGENTS.md + rules/)를 참조하여 구현했습니다.
+
+| 변경 사항 | 설명 |
+|-----------|------|
+| **csharp-best-practices** (신규) | C# 12/.NET 8 코드 작성 가이드라인 knowledge-base, 12개 규칙 파일 (vercel-react-best-practices 패턴 참조) |
+| **csharp-tdd-develop** (신규) | TDD Red-Green-Refactor 워크플로우 조율, csharp-expert에 위임 |
+| **csharp-test-develop** (신규) | 기존 코드에 테스트 코드 작성 (xUnit/Moq/FluentAssertions) |
+| **csharp-code-review** (수정) | "Positive Aspects" 섹션 제거 — 수정할 점만 출력 |
+
+---
 
 ### v1.4.0 (2025-01-27)
 

@@ -1,6 +1,6 @@
 # C# Marketplace Plugin
 
-[![Version](https://img.shields.io/badge/version-1.4.0-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-1.5.0-blue.svg)]()
 [![.NET](https://img.shields.io/badge/.NET-8%2F9-purple.svg)]()
 [![C#](https://img.shields.io/badge/C%23-12%2F13-green.svg)]()
 [![Claude Code](https://img.shields.io/badge/Claude_Code-2.1.3+-orange.svg)]()
@@ -23,6 +23,9 @@ A Claude Code plugin for C# and WPF development. Provides expert agents and code
 | **csharp-code-review** | OOP/SOLID/GoF + Performance/Security/Async code review |
 | **csharp-refactor** | Apply SOLID principles, introduce design patterns, convert to Modern C# syntax |
 | **wpf-mvvm-generator** | Generate ViewModel/View/Model based on CommunityToolkit.Mvvm |
+| **csharp-best-practices** | C# 12/.NET 8 coding guidelines knowledge-base (12 rules, 3-tier architecture inspired by vercel-react-best-practices) |
+| **csharp-tdd-develop** | TDD-based C# development (Red-Green-Refactor workflow) |
+| **csharp-test-develop** | Write test code for existing C# classes |
 
 ### MCP Servers
 | Server | Description |
@@ -91,10 +94,22 @@ c-sharp-marketplace/
 │   ├── csharp-expert.md     # C#/.NET expert agent
 │   └── wpf-expert.md        # WPF/MVVM expert agent
 ├── skills/
+│   ├── csharp-best-practices/
+│   │   ├── SKILL.md         # Best practices guideline skill
+│   │   ├── AGENTS.md        # Knowledge-base agent
+│   │   └── rules/           # 12 guideline rule files
 │   ├── csharp-code-review/
 │   │   └── SKILL.md         # Code review skill
 │   ├── csharp-refactor/
 │   │   └── SKILL.md         # Refactoring skill
+│   ├── csharp-tdd-develop/
+│   │   ├── SKILL.md         # TDD workflow orchestrator
+│   │   └── scripts/
+│   │       └── test-detector.js  # .csproj test env detection
+│   ├── csharp-test-develop/
+│   │   ├── SKILL.md         # Test code writing skill
+│   │   └── references/
+│   │       └── csharp-test-patterns.md  # C# test patterns guide
 │   └── wpf-mvvm-generator/
 │       └── SKILL.md         # MVVM generation skill
 ├── .mcp.json                # MCP server configuration
@@ -140,6 +155,25 @@ Agents can be invoked directly using `@agent-name`, or Claude Code will automati
 /csharp-refactor src/Services/UserService.cs        # Specific file
 /csharp-refactor src/Services/UserService.cs solid  # SOLID refactoring only
 /csharp-refactor src/Services/UserService.cs modern # Modern C# syntax conversion
+```
+
+#### Best Practices Guidelines
+```
+/csharp-best-practices                      # Show all rules
+/csharp-best-practices primary-constructor  # Specific topic
+/csharp-best-practices record              # Record types guide
+```
+
+#### TDD Development
+```
+/csharp-tdd-develop UserService            # TDD workflow for UserService
+/csharp-tdd-develop 주문 처리 서비스        # TDD workflow for order service
+```
+
+#### Test Code Writing
+```
+/csharp-test-develop src/Services/UserService.cs  # Write tests for file
+/csharp-test-develop OrderService                  # Find and write tests for class
 ```
 
 #### MVVM Code Generation
@@ -218,6 +252,21 @@ Add "use context7" to your prompt for documentation search:
 - Visual Studio 2022 / JetBrains Rider
 
 ## Changelog
+
+### v1.5.0 (2025-01-30)
+
+**Plugin Modularization**
+
+Added new skills for best practices, TDD development, and test code writing. The `csharp-best-practices` skill follows the 3-tier architecture (SKILL.md + AGENTS.md + rules/) inspired by [vercel-react-best-practices](https://github.com/anthropics/claude-code/tree/main/skills/vercel-react-best-practices).
+
+| Change | Description |
+|--------|-------------|
+| **csharp-best-practices** (New) | C# 12/.NET 8 coding guidelines knowledge-base with 12 rule files (modeled after vercel-react-best-practices) |
+| **csharp-tdd-develop** (New) | TDD Red-Green-Refactor workflow orchestrator delegating to csharp-expert |
+| **csharp-test-develop** (New) | Test code writing skill for existing code (xUnit/Moq/FluentAssertions) |
+| **csharp-code-review** (Updated) | Removed "Positive Aspects" section — issues only output |
+
+---
 
 ### v1.4.0 (2025-01-27)
 
