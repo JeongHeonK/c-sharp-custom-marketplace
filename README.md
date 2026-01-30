@@ -5,29 +5,31 @@
 [![C#](https://img.shields.io/badge/C%23-12%2F13-green.svg)]()
 [![Claude Code](https://img.shields.io/badge/Claude_Code-2.1.3+-orange.svg)]()
 
-C# 및 WPF 개발을 위한 Claude Code 플러그인입니다. Modern C# 12/13, OOP 원칙, SOLID 원칙, GoF 디자인 패턴에 중점을 둔 전문가 에이전트와 코드 리뷰/리팩토링/MVVM 생성 스킬을 제공합니다.
+[**한국어**](README.ko.md)
 
-## 주요 기능
+A Claude Code plugin for C# and WPF development. Provides expert agents and code review/refactoring/MVVM generation skills focused on Modern C# 12/13, OOP principles, SOLID principles, and GoF design patterns.
+
+## Key Features
 
 ### Agents
-| Agent | 설명 |
-|-------|------|
-| **C# Expert** | Modern C# 12/13, SOLID 원칙, GoF 패턴, Performance 최적화 전문가 |
-| **WPF Expert** | CommunityToolkit.Mvvm, MVVM 패턴, 데이터 바인딩, Modern UI 전문가 |
+| Agent | Description |
+|-------|-------------|
+| **C# Expert** | Modern C# 12/13, SOLID principles, GoF patterns, performance optimization expert |
+| **WPF Expert** | CommunityToolkit.Mvvm, MVVM patterns, data binding, Modern UI expert |
 
 ### Skills
-| Skill | 설명 |
-|-------|------|
-| **csharp-code-review** | OOP/SOLID/GoF + Performance/Security/Async 코드 리뷰 |
-| **csharp-refactor** | SOLID 원칙 적용, 디자인 패턴 도입, Modern C# 문법 전환 |
-| **wpf-mvvm-generator** | CommunityToolkit.Mvvm 기반 ViewModel/View/Model 생성 |
+| Skill | Description |
+|-------|-------------|
+| **csharp-code-review** | OOP/SOLID/GoF + Performance/Security/Async code review |
+| **csharp-refactor** | Apply SOLID principles, introduce design patterns, convert to Modern C# syntax |
+| **wpf-mvvm-generator** | Generate ViewModel/View/Model based on CommunityToolkit.Mvvm |
 
 ### MCP Servers
-| Server | 설명 |
-|--------|------|
-| **Context7** | .NET, WPF, NuGet 공식 문서 검색 |
+| Server | Description |
+|--------|-------------|
+| **Context7** | .NET, WPF, NuGet official documentation search |
 
-## 지원 기능
+## Supported Features
 
 ### Modern C# Features (C# 12/13)
 - Primary constructors
@@ -44,244 +46,244 @@ C# 및 WPF 개발을 위한 Claude Code 플러그인입니다. Modern C# 12/13, 
 - `WeakReferenceMessenger` Pub/Sub
 - Dependency Injection Integration
 
-### Code Review 검토 항목
-- OOP 4대 원칙
-- SOLID 원칙
-- GoF 디자인 패턴 적용 기회
-- Modern C# 기능 활용
-- Performance (메모리 할당, Span<T>, Memory<T>, LOH)
-- Async/Await 패턴
-- Security (SQL Injection, XSS 등)
+### Code Review Checklist
+- OOP four pillars
+- SOLID principles
+- GoF design pattern opportunities
+- Modern C# feature utilization
+- Performance (memory allocation, Span<T>, Memory<T>, LOH)
+- Async/Await patterns
+- Security (SQL Injection, XSS, etc.)
 
-## 설치 방법
+## Installation
 
-### 방법 1: npx로 설치 (권장)
+### Method 1: Install via npx (Recommended)
 ```bash
-# 모든 스킬 설치
+# Install all skills
 npx skills add JeongHeonK/c-sharp-custom-marketplace
 
-# 특정 스킬만 설치
+# Install specific skills only
 npx skills add JeongHeonK/c-sharp-custom-marketplace --skill csharp-code-review
 npx skills add JeongHeonK/c-sharp-custom-marketplace --skill csharp-refactor wpf-mvvm-generator
 ```
 
-### 방법 2: Claude Code UI에서 설치
-1. `/plugin` 입력하여 플러그인 매니저 열기
-2. **Tab** 키로 **Marketplaces** 탭 이동
-3. **Add Marketplace** 선택 후 Enter
-4. 경로 입력: `JeongHeonK/c-sharp-custom-marketplace`
-5. **Discover** 탭에서 원하는 스킬 선택하여 설치
+### Method 2: Install via Claude Code UI
+1. Type `/plugin` to open the plugin manager
+2. Press **Tab** to navigate to the **Marketplaces** tab
+3. Select **Add Marketplace** and press Enter
+4. Enter the path: `JeongHeonK/c-sharp-custom-marketplace`
+5. Select desired skills from the **Discover** tab to install
 
-### 설치 범위 (Scope)
+### Installation Scope
 
-`/plugin` UI에서 설치 시 범위를 선택할 수 있습니다:
-- **User scope**: 모든 프로젝트에서 사용 (기본값)
-- **Project scope**: 해당 저장소의 모든 협업자가 사용
-- **Local scope**: 해당 저장소에서 본인만 사용
+When installing via the `/plugin` UI, you can choose the scope:
+- **User scope**: Available across all projects (default)
+- **Project scope**: Available to all collaborators in the repository
+- **Local scope**: Available only to you in the repository
 
-## 플러그인 구조
+## Plugin Structure
 
 ```
 c-sharp-marketplace/
 ├── .claude-plugin/
-│   └── marketplace.json     # 마켓플레이스 매니페스트
+│   └── marketplace.json     # Marketplace manifest
 ├── agents/
-│   ├── csharp-expert.md     # C#/.NET 전문가 에이전트
-│   └── wpf-expert.md        # WPF/MVVM 전문가 에이전트
+│   ├── csharp-expert.md     # C#/.NET expert agent
+│   └── wpf-expert.md        # WPF/MVVM expert agent
 ├── skills/
 │   ├── csharp-code-review/
-│   │   └── SKILL.md         # 코드 리뷰 스킬
+│   │   └── SKILL.md         # Code review skill
 │   ├── csharp-refactor/
-│   │   └── SKILL.md         # 리팩토링 스킬
+│   │   └── SKILL.md         # Refactoring skill
 │   └── wpf-mvvm-generator/
-│       └── SKILL.md         # MVVM 생성 스킬
-├── .mcp.json                # MCP 서버 설정
-├── CLAUDE.md                # 프로젝트 컨벤션
+│       └── SKILL.md         # MVVM generation skill
+├── .mcp.json                # MCP server configuration
+├── CLAUDE.md                # Project conventions
 └── README.md
 ```
 
-> **Note**: 플러그인 설치 후 `agents/`와 `skills/` 디렉토리가 자동으로 인식되어 슬래시 커맨드(`/skill-name`)와 에이전트 멘션(`@agent-name`)을 사용할 수 있습니다. (Claude Code 2.1.3+)
+> **Note**: After installing the plugin, the `agents/` and `skills/` directories are automatically recognized, enabling slash commands (`/skill-name`) and agent mentions (`@agent-name`). (Claude Code 2.1.3+)
 
-## 사용법
+## Usage
 
 ### Agents
 
-에이전트는 `@agent-name` 형태로 직접 호출하거나, 작업 컨텍스트에 따라 Claude Code가 자동으로 호출합니다.
+Agents can be invoked directly using `@agent-name`, or Claude Code will automatically invoke them based on task context.
 
 #### C# Expert Agent (`@csharp-expert`)
 ```
-@csharp-expert "User 엔티티에 대한 Repository 패턴 구현해줘"
-@csharp-expert "이 코드를 SOLID 원칙에 맞게 리팩토링해줘"
-@csharp-expert "Primary constructor로 변환해줘"
-@csharp-expert "Span<T>를 사용해서 성능 최적화해줘"
+@csharp-expert "Implement a Repository pattern for the User entity"
+@csharp-expert "Refactor this code to follow SOLID principles"
+@csharp-expert "Convert to primary constructors"
+@csharp-expert "Optimize performance using Span<T>"
 ```
 
 #### WPF Expert Agent (`@wpf-expert`)
 ```
-@wpf-expert "CommunityToolkit.Mvvm으로 ViewModel 만들어줘"
-@wpf-expert "[ObservableProperty]와 [RelayCommand] 사용해서 구현해줘"
-@wpf-expert "WeakReferenceMessenger로 ViewModel 간 통신 구현해줘"
-@wpf-expert "날짜 선택용 커스텀 컨트롤 만들어줘"
+@wpf-expert "Create a ViewModel using CommunityToolkit.Mvvm"
+@wpf-expert "Implement using [ObservableProperty] and [RelayCommand]"
+@wpf-expert "Implement inter-ViewModel communication with WeakReferenceMessenger"
+@wpf-expert "Create a custom date picker control"
 ```
 
 ### Skills
 
-#### 코드 리뷰
+#### Code Review
 ```
 /csharp-code-review
 /csharp-code-review src/Services/UserService.cs
 ```
 
-#### 코드 리팩토링
+#### Code Refactoring
 ```
-/csharp-refactor                                    # 전체 분석
-/csharp-refactor src/Services/UserService.cs        # 특정 파일
-/csharp-refactor src/Services/UserService.cs solid  # SOLID 리팩토링만
-/csharp-refactor src/Services/UserService.cs modern # Modern C# 문법 전환
-```
-
-#### MVVM 코드 생성
-```
-/wpf-mvvm-generator User                    # User에 대한 전체 MVVM 생성
-/wpf-mvvm-generator Product viewmodel       # ProductViewModel만 생성
-/wpf-mvvm-generator Order view              # OrderView만 생성
+/csharp-refactor                                    # Full analysis
+/csharp-refactor src/Services/UserService.cs        # Specific file
+/csharp-refactor src/Services/UserService.cs solid  # SOLID refactoring only
+/csharp-refactor src/Services/UserService.cs modern # Modern C# syntax conversion
 ```
 
-### MCP 서버 (Context7)
-
-문서 검색을 위해 프롬프트에 "use context7"을 추가하세요:
+#### MVVM Code Generation
 ```
-"C#에서 IAsyncEnumerable 사용법 알려줘 use context7"
-"CommunityToolkit.Mvvm ObservableProperty 예제 use context7"
-".NET 8 Span<T> 모범 사례 use context7"
+/wpf-mvvm-generator User                    # Generate full MVVM for User
+/wpf-mvvm-generator Product viewmodel       # Generate ProductViewModel only
+/wpf-mvvm-generator Order view              # Generate OrderView only
 ```
 
-## 코드 원칙
+### MCP Server (Context7)
 
-### OOP 4대 원칙
-- 캡슐화 (Encapsulation)
-- 상속 (Inheritance)
-- 다형성 (Polymorphism)
-- 추상화 (Abstraction)
+Add "use context7" to your prompt for documentation search:
+```
+"Show me how to use IAsyncEnumerable in C# use context7"
+"CommunityToolkit.Mvvm ObservableProperty examples use context7"
+".NET 8 Span<T> best practices use context7"
+```
 
-### SOLID 원칙
-| 원칙 | 설명 |
-|------|------|
-| **SRP** | 단일 책임 원칙 (Single Responsibility Principle) |
-| **OCP** | 개방-폐쇄 원칙 (Open/Closed Principle) |
-| **LSP** | 리스코프 치환 원칙 (Liskov Substitution Principle) |
-| **ISP** | 인터페이스 분리 원칙 (Interface Segregation Principle) |
-| **DIP** | 의존성 역전 원칙 (Dependency Inversion Principle) |
+## Code Principles
 
-### GoF 디자인 패턴
+### OOP Four Pillars
+- Encapsulation
+- Inheritance
+- Polymorphism
+- Abstraction
 
-**생성 패턴**: Singleton, Factory Method, Abstract Factory, Builder, Prototype
+### SOLID Principles
+| Principle | Description |
+|-----------|-------------|
+| **SRP** | Single Responsibility Principle |
+| **OCP** | Open/Closed Principle |
+| **LSP** | Liskov Substitution Principle |
+| **ISP** | Interface Segregation Principle |
+| **DIP** | Dependency Inversion Principle |
 
-**구조 패턴**: Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy
+### GoF Design Patterns
 
-**행동 패턴**: Chain of Responsibility, Command, Iterator, Mediator, Memento, Observer, State, Strategy, Template Method, Visitor
+**Creational Patterns**: Singleton, Factory Method, Abstract Factory, Builder, Prototype
 
-## 네이밍 컨벤션
+**Structural Patterns**: Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy
 
-| 타입 | 컨벤션 | 예시 |
-|------|--------|------|
-| 클래스, 메서드, 프로퍼티 | PascalCase | `UserService`, `GetById` |
-| 지역 변수, 매개변수 | camelCase | `userId`, `isActive` |
-| Private 필드 | _camelCase | `_repository`, `_logger` |
-| 인터페이스 | I 접두사 | `IRepository`, `IUserService` |
-| Async 메서드 | Async 접미사 | `GetByIdAsync` |
+**Behavioral Patterns**: Chain of Responsibility, Command, Iterator, Mediator, Memento, Observer, State, Strategy, Template Method, Visitor
 
-## 권장 프로젝트 구조
+## Naming Conventions
+
+| Type | Convention | Example |
+|------|------------|---------|
+| Classes, Methods, Properties | PascalCase | `UserService`, `GetById` |
+| Local variables, Parameters | camelCase | `userId`, `isActive` |
+| Private fields | _camelCase | `_repository`, `_logger` |
+| Interfaces | I prefix | `IRepository`, `IUserService` |
+| Async methods | Async suffix | `GetByIdAsync` |
+
+## Recommended Project Structure
 
 ```
 /src
-  /Models          - 도메인 모델
-  /ViewModels      - MVVM ViewModel (partial classes)
+  /Models          - Domain models
+  /ViewModels      - MVVM ViewModels (partial classes)
   /Views           - WPF XAML Views
-  /Services        - 비즈니스 서비스
-  /Repositories    - 데이터 접근 계층
-  /Messages        - Messenger 메시지 타입
-  /Converters      - IValueConverter 구현
-  /Infrastructure  - 공통 인프라
+  /Services        - Business services
+  /Repositories    - Data access layer
+  /Messages        - Messenger message types
+  /Converters      - IValueConverter implementations
+  /Infrastructure  - Common infrastructure
 /tests
-  /UnitTests       - 단위 테스트
-  /IntegrationTests - 통합 테스트
+  /UnitTests       - Unit tests
+  /IntegrationTests - Integration tests
 ```
 
-## 요구사항
+## Requirements
 
-- **Claude Code CLI 2.1.3+** (필수, 심볼릭 링크 스킬 지원)
-- Node.js 18+ (Context7 MCP 서버용)
+- **Claude Code CLI 2.1.3+** (required, symlinked skills support)
+- Node.js 18+ (for Context7 MCP server)
 - .NET 8/9 SDK
 - Visual Studio 2022 / JetBrains Rider
 
-## 변경 이력
+## Changelog
 
 ### v1.4.0 (2025-01-27)
 
-**Claude Code 2.1.x 호환성 개선**
+**Claude Code 2.1.x Compatibility Improvements**
 
-Claude Code 2.1.3+에서 skills와 slash commands가 통합됨에 따라 문서 및 구조를 개선했습니다.
+Updated documentation and structure in accordance with the integration of skills and slash commands in Claude Code 2.1.3+.
 
-| 변경 사항 | 설명 | 관련 버전 |
-|-----------|------|-----------|
-| 에이전트 `@mention` 호출 | `@csharp-expert`, `@wpf-expert` 직접 호출 지원 | v2.1.0 |
-| 스킬 슬래시 커맨드 | `/csharp-code-review` 등 직접 호출 | v2.1.3 |
-| `user-invocable` 설정 | 슬래시 커맨드 메뉴 표시 설정 | v2.1.3 |
-| 문서 개선 | 플러그인 구조 및 사용법 명확화 | - |
+| Change | Description | Related Version |
+|--------|-------------|-----------------|
+| Agent `@mention` invocation | Direct invocation support for `@csharp-expert`, `@wpf-expert` | v2.1.0 |
+| Skill slash commands | Direct invocation via `/csharp-code-review`, etc. | v2.1.3 |
+| `user-invocable` setting | Slash command menu visibility configuration | v2.1.3 |
+| Documentation improvements | Clarified plugin structure and usage | - |
 
 ---
 
 ### v1.3.0 (2025-01-24)
 
-**Claude Code 2.1.x 호환성 업데이트**
+**Claude Code 2.1.x Compatibility Update**
 
-이번 업데이트는 Claude Code 2.0.x ~ 2.1.x 릴리스 노트의 주요 변경사항을 반영합니다.
+This update reflects major changes from the Claude Code 2.0.x ~ 2.1.x release notes.
 
-#### Agent 업데이트
-| 항목 | 설명 | 관련 버전 |
-|------|------|-----------|
-| `model` field | 에이전트가 사용할 모델 지정 (sonnet/opus/haiku) | v2.0.64 |
-| `permissionMode` field | 에이전트 권한 모드 설정 | v2.0.43 |
-| `allowed-tools` | YAML 리스트 형태 도구 허용 목록 | v2.1.0 |
-| `disallowedTools` | 명시적 도구 차단 목록 | v2.0.30 |
+#### Agent Updates
+| Item | Description | Related Version |
+|------|-------------|-----------------|
+| `model` field | Specify the model for agents (sonnet/opus/haiku) | v2.0.64 |
+| `permissionMode` field | Configure agent permission mode | v2.0.43 |
+| `allowed-tools` | Tool allowlist in YAML list format | v2.1.0 |
+| `disallowedTools` | Explicit tool blocklist | v2.0.30 |
 
-#### Skill 업데이트
-| 항목 | 설명 | 관련 버전 |
-|------|------|-----------|
-| `context: fork` | 포크된 서브에이전트 컨텍스트에서 실행 | v2.1.0 |
-| `argument-hint` | 슬래시 커맨드 인자 힌트 표시 | v2.1.0 |
-| `user-invocable` | 슬래시 커맨드 메뉴 표시 여부 | v2.1.3 |
-| `skills` field | 서브에이전트용 스킬 자동 로드 | v2.1.0 |
-| `$ARGUMENTS[0]` | 새로운 인자 접근 문법 (기존 `$ARGUMENTS.0` 대체) | v2.1.19 |
+#### Skill Updates
+| Item | Description | Related Version |
+|------|-------------|-----------------|
+| `context: fork` | Execute in forked sub-agent context | v2.1.0 |
+| `argument-hint` | Slash command argument hint display | v2.1.0 |
+| `user-invocable` | Slash command menu visibility | v2.1.3 |
+| `skills` field | Auto-load skills for sub-agents | v2.1.0 |
+| `$ARGUMENTS[0]` | New argument access syntax (replaces `$ARGUMENTS.0`) | v2.1.19 |
 
-#### 새로운 Skills
-- **csharp-refactor**: SOLID 원칙 적용, 디자인 패턴 도입, Modern C# 문법 전환
-- **wpf-mvvm-generator**: CommunityToolkit.Mvvm 기반 ViewModel/View/Model 코드 생성
+#### New Skills
+- **csharp-refactor**: Apply SOLID principles, introduce design patterns, convert to Modern C# syntax
+- **wpf-mvvm-generator**: Generate ViewModel/View/Model code based on CommunityToolkit.Mvvm
 
-#### 기타
-- LSP 도구 지원 추가 (go-to-definition, find-references, hover) - v2.0.74
-- 새로운 Task Management System 지원 - v2.1.16
+#### Other
+- Added LSP tool support (go-to-definition, find-references, hover) - v2.0.74
+- New Task Management System support - v2.1.16
 
 ---
 
 ### v1.2.0
-- Marketplace 배포를 위한 marketplace.json 파일 추가
-- 플러그인 설치 방법 가이드 개선
+- Added marketplace.json for Marketplace distribution
+- Improved plugin installation guide
 
 ### v1.1.0
-- Modern C# 12/13 기능 지원 추가
-- CommunityToolkit.Mvvm Source Generators 가이드 추가
-- Performance Review 섹션 추가 (Span<T>, Memory<T>, LOH)
-- Async Code Review 체크리스트 추가
-- Security Review 섹션 추가
+- Added Modern C# 12/13 feature support
+- Added CommunityToolkit.Mvvm Source Generators guide
+- Added Performance Review section (Span<T>, Memory<T>, LOH)
+- Added Async Code Review checklist
+- Added Security Review section
 
 ### v1.0.0
-- 초기 릴리즈
-- C# Expert, WPF Expert 에이전트
-- Code Review 스킬
-- Context7 MCP 서버 설정
+- Initial release
+- C# Expert, WPF Expert agents
+- Code Review skill
+- Context7 MCP server configuration
 
-## 라이센스
+## License
 
 MIT
