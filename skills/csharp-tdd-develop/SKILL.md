@@ -129,6 +129,7 @@ TDD RED 단계를 수행하세요.
 1. GetByIdAsync — 유효한 ID로 사용자 반환
 2. GetByIdAsync — 존재하지 않는 ID로 null 반환
 3. CreateAsync — 유효한 데이터로 사용자 생성
+4. CreateAsync — 중복 이메일로 예외 발생
 
 ## 지침
 1. 테스트 파일 생성: tests/UnitTests/Services/UserServiceTests.cs
