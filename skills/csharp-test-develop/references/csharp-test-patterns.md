@@ -412,22 +412,41 @@ var mockString = new Mock<string>(); // ?!
 var mockRepo = new Mock<IUserRepository>();
 ```
 
-### 3. 하나의 테스트에 여러 Assert 주의
+### 3. 하나의 테스트, 하나의 책임 (One Test, One Responsibility)
+
+하나의 논리적 결과를 검증하기 위해 여러 Assert를 사용하는 것은 괜찮습니다.
+문제는 **서로 관련 없는 동작**을 하나의 테스트에서 검증하는 것입니다.
 
 ```csharp
-// Bad - 너무 많은 assert
+// Bad - 서로 다른 동작을 하나의 테스트에서 검증
 [Fact]
 public void Test_Everything()
 {
-    // ... 10개의 assert
+    var user = service.Create("Alice");
+    user.Should().NotBeNull();           // 생성 검증
+
+    var found = service.GetById(user.Id);
+    found.Should().NotBeNull();          // 조회 검증 (다른 동작)
+
+    service.Delete(user.Id);
+    service.GetById(user.Id).Should().BeNull(); // 삭제 검증 (또 다른 동작)
 }
 
-// Good - 시나리오별 분리
+// Good - 하나의 논리적 결과에 대한 여러 Assert (OK)
 [Fact]
-public void Create_ValidInput_ReturnsCreatedUser() { }
+public void Create_ValidInput_ReturnsCreatedUser()
+{
+    var result = service.Create("Alice", "alice@test.com");
 
+    result.Should().NotBeNull();
+    result.Id.Should().BePositive();
+    result.Name.Should().Be("Alice");
+    result.Email.Should().Be("alice@test.com");
+}
+
+// Good - 서로 다른 동작은 별도 테스트로 분리
 [Fact]
-public void Create_ValidInput_SavestoRepository() { }
+public void Create_ValidInput_SavesToRepository() { }
 ```
 
 ### 4. 테스트 간 의존성 금지
