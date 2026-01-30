@@ -185,10 +185,6 @@ Identify areas in the code where these patterns could be applied:
 - Current: {code}
 - Improved: {code}
 
-## Positive Aspects
-- {mention well-written parts}
-- {good patterns already in use}
-
 ## Prioritized Improvements
 1. [Critical] {security issues}
 2. [High] {SOLID violations, performance issues}
@@ -197,7 +193,7 @@ Identify areas in the code where these patterns could be applied:
 ```
 
 ## Guidelines
-- Don't just criticize; mention positive aspects too.
+- Only report issues that need fixing. Do not include positive feedback.
 - Provide improvements with concrete code examples.
 - Don't recommend over-engineering.
 - Make practical suggestions considering context.
