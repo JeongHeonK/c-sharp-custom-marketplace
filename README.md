@@ -212,7 +212,7 @@ Add "use context7" to your prompt for documentation search:
 
 ## Requirements
 
-- **Claude Code CLI 2.1.3+** (required, symlinked skills support)
+- **Claude Code CLI 2.1.3+** (required, supports symlinked skills)
 - Node.js 18+ (for Context7 MCP server)
 - .NET 8/9 SDK
 - Visual Studio 2022 / JetBrains Rider
