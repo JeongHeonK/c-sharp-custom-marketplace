@@ -2,7 +2,7 @@
 
 ## Overview
 
-C#/.NET 및 WPF 개발을 위한 Claude Code 플러그인 (v1.4.0)
+C#/.NET 및 WPF 개발을 위한 Claude Code 플러그인 (v1.5.0)
 
 ## Tech Stack
 
@@ -70,6 +70,9 @@ C#/.NET 및 WPF 개발을 위한 Claude Code 플러그인 (v1.4.0)
 | `/csharp-code-review` | OOP/SOLID/GoF based code review | `/csharp-code-review [file]` |
 | `/csharp-refactor` | SOLID/Pattern/Modern C# refactoring | `/csharp-refactor [file] [type]` |
 | `/wpf-mvvm-generator` | MVVM code generation | `/wpf-mvvm-generator <entity> [type]` |
+| `/csharp-best-practices` | C# 12/.NET 8 코드 작성 가이드라인 | `/csharp-best-practices [topic]` |
+| `/csharp-tdd-develop` | TDD 기반 C# 개발 (Red-Green-Refactor) | `/csharp-tdd-develop <class>` |
+| `/csharp-test-develop` | 기존 코드에 테스트 코드 작성 | `/csharp-test-develop <class-or-file>` |
 
 ### MCP Servers
 
