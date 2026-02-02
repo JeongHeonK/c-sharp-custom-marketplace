@@ -4,7 +4,7 @@
 
 ## Overview
 
-C#/.NET 및 WPF 개발을 위한 Claude Code 플러그인 마켓플레이스 (v1.5.0)
+C#/.NET 및 WPF 개발을 위한 Claude Code 플러그인 마켓플레이스 (v1.6.0)
 
 - **GitHub**: `JeongHeonK/c-sharp-custom-marketplace`
 - **License**: MIT
@@ -129,3 +129,35 @@ allowed-tools:
 1. `.claude-plugin/marketplace.json` — `metadata.version` + `plugins[0].version`
 2. `CLAUDE.md` — Overview 섹션의 버전 표기
 3. `README.md` / `README.ko.md` — 배지 및 Changelog 섹션
+
+## Development Guidelines
+
+### 스킬 추가/수정 시 docs 업데이트 체크리스트
+
+새 스킬을 추가하거나 기존 스킬을 수정할 때 반드시 다음을 업데이트:
+
+1. **Knowledge-base 스킬 추가 시**:
+   - `skills/project-setup/references/claude-md-template.md`의 `C#/.NET Coding Guidelines` 섹션에 docs index 행 추가
+   - 파일 경로 + "When to Read" 트리거 조건 명시
+   - `/csharp-best-practices` SKILL.md Rules 테이블에도 동기화
+
+2. **Workflow/Generator 스킬 추가 시**:
+   - `skills/project-setup/references/claude-md-template.md`의 `Skill Workflows` 섹션에 행 추가
+   - "Pre-invoke" 컬럼에 explore-first 지시 포함
+
+3. **rules/ 파일 추가/삭제 시**:
+   - `claude-md-template.md` docs index 테이블 동기화
+   - `csharp-best-practices/SKILL.md` Rules 테이블 동기화
+
+4. **공통**:
+   - `README.md` / `README.ko.md` Skills 섹션 업데이트
+   - `CLAUDE.md` File Structure 트리 업데이트
+
+### 스킬 작성 규칙
+- Knowledge-base 스킬: `allowed-tools`에 Read, Glob, Grep만. Edit/Write 불가.
+- Fork 스킬: 독립 실행 가능한 결과물 생성. 호출자 컨텍스트 의존 불가.
+- Current+Task 스킬: SKILL.md에 오케스트레이션만. 실제 코드 작업은 Task로 에이전트 위임.
+
+### 테스트
+- 스킬 수정 후 대표 인자로 직접 호출하여 검증.
+- rules/ 파일 수정 후 참조하는 스킬로 올바른 파일 해석 확인.

@@ -1,6 +1,6 @@
 # C# Marketplace Plugin
 
-[![Version](https://img.shields.io/badge/version-1.5.0-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-1.6.0-blue.svg)]()
 [![.NET](https://img.shields.io/badge/.NET-8%2F9-purple.svg)]()
 [![C#](https://img.shields.io/badge/C%23-12%2F13-green.svg)]()
 [![Claude Code](https://img.shields.io/badge/Claude_Code-2.1.3+-orange.svg)]()
@@ -267,6 +267,20 @@ c-sharp-marketplace/
 - Visual Studio 2022 / JetBrains Rider
 
 ## 변경 이력
+
+### v1.6.0 (2026-02-02)
+
+**CLAUDE.md 템플릿에 Docs Index 패턴 적용**
+
+[Vercel의 agents.md outperforms skills](https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals) 연구 결과를 반영하여 `project-setup`이 생성하는 CLAUDE.md 템플릿을 개선했습니다.
+
+| 변경 사항 | 설명 |
+|-----------|------|
+| **claude-md-template.md** (수정) | "Skill Invocation Guidelines"를 docs index(`C#/.NET Coding Guidelines`) + explore-first(`Skill Workflows`) 섹션으로 교체 |
+| **project-setup/SKILL.md** (수정) | 검증 체크리스트를 새 섹션명에 맞게 업데이트 |
+| **CLAUDE.md** (수정) | 플러그인 유지보수를 위한 `Development Guidelines` 섹션 추가 |
+
+---
 
 ### v1.5.0 (2025-01-30)
 
