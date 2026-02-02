@@ -115,7 +115,7 @@ Write 도구로 `<target>/CLAUDE.md` 생성. `references/claude-md-template.md` 
 
 1. 기존 CLAUDE.md를 Read
 2. `## Context Management` 섹션이 없으면 Edit으로 추가
-3. `## Skill Invocation Guidelines` 섹션이 없으면 Edit으로 추가
+3. `## C#/.NET Coding Guidelines` + `## Skill Workflows` 섹션이 없으면 Edit으로 추가
 4. 기존 내용은 절대 삭제하지 않음
 
 ---
@@ -226,7 +226,7 @@ Write 도구로 `<target>/CLAUDE.md` 생성. `references/claude-md-template.md` 
 - [ ] `.claude/context/` 디렉토리 존재
 - [ ] `.claude/learnings/` 디렉토리 존재
 - [ ] `.claude/settings.local.json`에 hook 등록 확인
-- [ ] `CLAUDE.md`에 Skill Invocation Guidelines 섹션 존재 (init/migrate)
+- [ ] `CLAUDE.md`에 C#/.NET Coding Guidelines + Skill Workflows 섹션 존재 (init/migrate)
 
 검증 실패 항목이 있으면 사용자에게 알리고 수동 조치 방법 안내.
 

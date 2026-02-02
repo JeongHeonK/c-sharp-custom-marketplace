@@ -50,32 +50,56 @@ This project uses automated context hooks to maintain session state.
 - `.claude/context/` — Session state snapshots (auto-managed)
 - `.claude/learnings/` — Cross-session learnings (auto-managed)
 
-## Skill Invocation Guidelines
+## C#/.NET Coding Guidelines
 
-This project uses the c-sharp-marketplace plugin. Follow these instructions exactly.
+Prefer retrieval-led reasoning over pre-training-led reasoning for any C#/.NET tasks.
+When writing or reviewing C# code, read the relevant guideline file BEFORE writing code.
 
-### Before Writing Code
-- Invoke `/csharp-best-practices` to review relevant C# 12 guidelines before writing code.
-- For WPF features, invoke `/wpf-mvvm-generator <entity>` to scaffold MVVM boilerplate first.
+### C# 12 Features (.NET 8)
 
-### During Development
-- For new features, invoke `/csharp-tdd-develop <class>` to follow the TDD Red-Green-Refactor workflow.
-- When adding tests to existing code, invoke `/csharp-test-develop <file>` instead.
+| Guideline | File | When to Read |
+|-----------|------|-------------|
+| Primary Constructors | `{plugin-path}/rules/cs12-primary-constructor.md` | DI 서비스, 간단한 초기화 클래스 작성 시 |
+| Collection Expressions | `{plugin-path}/rules/cs12-collection-expression.md` | 배열/리스트/Span 초기화 시 |
+| Alias Any Type | `{plugin-path}/rules/cs12-alias-any-type.md` | 복잡한 타입에 별칭 필요 시 |
+| Lambda Default Params | `{plugin-path}/rules/cs12-lambda-defaults.md` | 람다 식에 기본값 필요 시 |
+| Inline Arrays | `{plugin-path}/rules/cs12-inline-array.md` | 고성능 고정 크기 버퍼 필요 시 |
+| ref readonly Parameters | `{plugin-path}/rules/cs12-ref-readonly-param.md` | 참조 전달 API 설계 시 |
 
-### After Writing Code
-- Before committing, invoke `/csharp-code-review <file>` on all modified .cs files.
-- If SOLID violations or code smells are found, invoke `/csharp-refactor <file> <type>`.
+### Modern C# (C# 9-11)
 
-### Quick Reference
-| Task | Skill to Invoke |
-|------|----------------|
-| C# 12 feature syntax | `/csharp-best-practices <topic>` |
-| Create WPF ViewModel/View | `/wpf-mvvm-generator <entity>` |
-| Develop new class with TDD | `/csharp-tdd-develop <class>` |
-| Add tests to existing code | `/csharp-test-develop <file>` |
-| Review code quality | `/csharp-code-review <file>` |
-| Refactor existing code | `/csharp-refactor <file> <type>` |
-| Search .NET documentation | Include "use context7" in prompt |
+| Guideline | File | When to Read |
+|-----------|------|-------------|
+| Record Types | `{plugin-path}/rules/modern-record-type.md` | DTO, Value Object 작성 시 |
+| required / init | `{plugin-path}/rules/modern-required-init.md` | 안전한 객체 초기화 필요 시 |
+| Pattern Matching | `{plugin-path}/rules/modern-pattern-matching.md` | 복잡한 조건 분기 시 |
+| List Patterns | `{plugin-path}/rules/modern-list-pattern.md` | 배열/리스트 패턴 매칭 시 |
+| Raw String Literals | `{plugin-path}/rules/modern-raw-string-literal.md` | 멀티라인 문자열 시 |
+| File-scoped Namespaces | `{plugin-path}/rules/modern-file-scoped-namespace.md` | 새 .cs 파일 생성 시 (항상) |
+
+## Skill Workflows
+
+When a task matches below, explore relevant code first, then invoke the skill.
+
+### Development (explore code → invoke)
+| Task | Skill | Pre-invoke |
+|------|-------|-----------|
+| TDD로 새 클래스 개발 | `/csharp-tdd-develop <class>` | 관련 클래스와 테스트 패턴 먼저 읽기 |
+| 기존 코드에 테스트 추가 | `/csharp-test-develop <file>` | 대상 파일과 의존성 먼저 파악 |
+
+### Code Quality (코드 작성 후)
+| Task | Skill |
+|------|-------|
+| 코드 리뷰 | `/csharp-code-review <file>` — 커밋 전 모든 수정된 .cs 파일에 |
+| 리팩토링 | `/csharp-refactor <file> <type>` — SOLID 위반/코드 스멜 발견 시 |
+
+### Scaffolding
+| Task | Skill |
+|------|-------|
+| WPF ViewModel/View 생성 | `/wpf-mvvm-generator <entity>` |
+
+### .NET 문서 검색
+프롬프트에 "use context7" 포함 시 MCP로 .NET 공식 문서 검색 가능.
 ```
 
 ---
@@ -90,8 +114,9 @@ This project uses the c-sharp-marketplace plugin. Follow these instructions exac
 | `{메인 프로젝트 경로}` | OutputType이 Exe/WinExe인 `.csproj` 경로 | src/MyApp/MyApp.csproj |
 | `{감지된 프로젝트 구조}` | 디렉토리 트리 | src/, tests/ 구조 |
 | `{주요 NuGet 패키지 목록}` | `<PackageReference>` 항목 | CommunityToolkit.Mvvm 등 |
+| `{plugin-path}` | Glob `**/skills/csharp-best-practices/rules/` 경로에서 resolve | `/home/user/.claude/plugins/.../skills/csharp-best-practices` |
 
 ## 조건부 섹션
 
-- **WPF 프로젝트가 아닌 경우**: "Before Writing Code"에서 `/wpf-mvvm-generator` 항목 제거, Quick Reference에서 해당 행 제거
+- **WPF 프로젝트가 아닌 경우**: "Skill Workflows > Scaffolding" 섹션 제거
 - **테스트 프로젝트가 없는 경우**: Build & Test Commands에서 Test 행 제거
