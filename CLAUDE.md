@@ -1,92 +1,131 @@
-# C# Marketplace Plugin
+# CLAUDE.md
+
+이 파일은 **이 저장소를 개발/유지보수하는 Claude Code**를 위한 가이드입니다.
 
 ## Overview
 
-C#/.NET 및 WPF 개발을 위한 Claude Code 플러그인 (v1.5.0)
+C#/.NET 및 WPF 개발을 위한 Claude Code 플러그인 마켓플레이스 (v1.5.0)
 
-## Tech Stack
+- **GitHub**: `JeongHeonK/c-sharp-custom-marketplace`
+- **License**: MIT
+- **Requirements**: Claude Code 2.1.x+
 
-- Language: C# 12/13 (.NET 8/9)
-- UI Framework: WPF
-- Architecture: MVVM (CommunityToolkit.Mvvm)
-- Claude Code: 2.1.x+
+## Architecture
 
-## Code Principles
-
-### OOP Four Pillars
-- Encapsulation, Inheritance, Polymorphism, Abstraction
-
-### SOLID Principles (Required)
-- **S**ingle Responsibility Principle
-- **O**pen/Closed Principle
-- **L**iskov Substitution Principle
-- **I**nterface Segregation Principle
-- **D**ependency Inversion Principle
-
-### GoF Design Patterns
-- Apply design patterns in appropriate situations
-- Avoid over-engineering
-
-## Naming Conventions
-
-| Type | Convention | Example |
-|------|------------|---------|
-| Classes, Methods, Properties | PascalCase | `UserService`, `GetById` |
-| Local variables, Parameters | camelCase | `userId`, `isActive` |
-| Private fields | _camelCase | `_repository`, `_logger` |
-| Interfaces | I prefix | `IRepository`, `IUserService` |
-| Async methods | Async suffix | `GetByIdAsync` |
-
-## Project Structure (Recommended)
+### 3-tier 구조
 
 ```
-/src
-  /Models          - Domain models
-  /ViewModels      - MVVM ViewModels (partial classes)
-  /Views           - WPF XAML Views
-  /Services        - Business services
-  /Repositories    - Data access layer
-  /Messages        - Messenger message types
-  /Converters      - IValueConverter implementations
-  /Infrastructure  - Common infrastructure
-/tests
-  /UnitTests       - Unit tests
-  /IntegrationTests - Integration tests
+agents/   → 전문가 에이전트 (실제 작업 수행)
+skills/   → 사용자 호출 스킬 (워크플로우 정의, 에이전트에 위임)
+rules/    → 스킬 내부 knowledge-base (skills/*/rules/)
 ```
 
-## Available Tools
+### 모델 계층화
 
-### Agents
+| 역할 | 모델 | 예시 |
+|------|------|------|
+| 오케스트레이션 (복잡한 워크플로우 조율) | Opus | `csharp-tdd-develop`, `csharp-test-develop` |
+| 전문가 에이전트 (실제 코드 작성/분석) | Sonnet | `csharp-expert`, `wpf-expert` |
+| Knowledge-base (가이드라인 참조) | 미지정 (호출측 모델) | `csharp-best-practices` |
 
-| Agent | Description | Model |
-|-------|-------------|-------|
-| `csharp-expert` | C# code writing and analysis expert | Sonnet |
-| `wpf-expert` | WPF/MVVM expert | Sonnet |
+### 위임 패턴
 
-### Skills
+스킬이 오케스트레이터 역할을 하고, `csharp-expert` 에이전트에 실제 작업을 위임:
 
-| Skill | Description | Usage |
-|-------|-------------|-------|
-| `/csharp-code-review` | OOP/SOLID/GoF based code review | `/csharp-code-review [file]` |
-| `/csharp-refactor` | SOLID/Pattern/Modern C# refactoring | `/csharp-refactor [file] [type]` |
-| `/wpf-mvvm-generator` | MVVM code generation | `/wpf-mvvm-generator <entity> [type]` |
-| `/csharp-best-practices` | C# 12/.NET 8 코드 작성 가이드라인 | `/csharp-best-practices [topic]` |
-| `/csharp-tdd-develop` | TDD 기반 C# 개발 (Red-Green-Refactor) | `/csharp-tdd-develop <class>` |
-| `/csharp-test-develop` | 기존 코드에 테스트 코드 작성 | `/csharp-test-develop <class-or-file>` |
+```
+사용자 → /csharp-tdd-develop → (워크플로우 조율) → Task(csharp-expert) → 코드 작성
+```
 
-### MCP Servers
+### 스킬 context 모드
 
-- `context7`: Library/framework documentation search
-  - Usage: Include "use context7" in your prompt
-  - Example: "C# List<T> usage use context7"
-  - Supports .NET, WPF, NuGet package documentation
+| 모드 | 동작 | 사용처 |
+|------|------|--------|
+| `fork` | 독립 실행, 완료 후 결과 반환 | `csharp-code-review`, `csharp-refactor`, `wpf-mvvm-generator` |
+| `current` | 현재 컨텍스트에서 실행 | `csharp-tdd-develop`, `csharp-test-develop`, `csharp-best-practices`, `project-setup` |
 
-## Modern C# Features (Preferred)
+## File Structure
 
-- Primary constructors
-- Collection expressions `[1, 2, 3]`
-- required / init properties
-- Pattern matching
-- Record types
-- File-scoped namespaces
-- Raw string literals
+```
+/
+├── agents/
+│   ├── csharp-expert.md          # C#/.NET 전문가 에이전트
+│   └── wpf-expert.md             # WPF/MVVM 전문가 에이전트
+├── skills/
+│   ├── csharp-code-review/SKILL.md
+│   ├── csharp-refactor/SKILL.md
+│   ├── csharp-best-practices/
+│   │   ├── SKILL.md
+│   │   └── rules/                # 14개 규칙 파일 (cs12-*, modern-*)
+│   ├── csharp-tdd-develop/
+│   │   ├── SKILL.md
+│   │   └── scripts/              # test-detector.js
+│   ├── csharp-test-develop/
+│   │   ├── SKILL.md
+│   │   └── references/           # csharp-test-patterns.md
+│   ├── project-setup/
+│   │   ├── SKILL.md
+│   │   ├── scripts/              # setup.sh, setup.ps1
+│   │   ├── references/           # claude-md-template.md
+│   │   └── assets/hooks/         # hook 스크립트 (.sh + .ps1)
+│   └── wpf-mvvm-generator/SKILL.md
+├── .claude-plugin/
+│   └── marketplace.json          # 마켓플레이스 매니페스트
+├── .mcp.json                     # MCP 서버 설정 (context7)
+├── README.md                     # 영문 문서
+└── README.ko.md                  # 한국어 문서
+```
+
+## YAML Frontmatter 필수 필드
+
+### Agent (`agents/*.md`)
+
+```yaml
+name: <agent-name>
+description: <영문 설명>
+model: sonnet | opus | haiku
+permissionMode: default
+allowed-tools:
+  - Read
+  - Glob
+  - Grep
+  - Edit
+  - Write
+  - Bash(dotnet *)
+  - Bash(nuget *)
+disallowedTools:
+  - WebSearch
+```
+
+### Skill (`skills/*/SKILL.md`)
+
+```yaml
+name: <skill-name>
+description: <설명>
+user-invocable: true
+context: fork | current
+model: sonnet | opus        # knowledge-base 스킬은 생략 가능
+argument-hint: "<hint>"
+allowed-tools:
+  - Read
+  - Glob
+  - Grep
+  # context: current + 위임 패턴인 경우 Task 포함
+```
+
+## Documentation Language
+
+| 파일 | 언어 |
+|------|------|
+| SKILL.md 본문 | 한국어 |
+| Agent .md 본문 | 영어 |
+| README.md | 영어 |
+| README.ko.md | 한국어 |
+| Git 커밋 메시지 | 한국어 (Conventional Commits) |
+
+## Version Management
+
+버전 변경 시 다음 3곳을 동시에 업데이트:
+
+1. `.claude-plugin/marketplace.json` — `metadata.version` + `plugins[0].version`
+2. `CLAUDE.md` — Overview 섹션의 버전 표기
+3. `README.md` / `README.ko.md` — 배지 및 Changelog 섹션
