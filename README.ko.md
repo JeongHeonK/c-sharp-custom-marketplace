@@ -24,6 +24,7 @@ C# 및 WPF 개발을 위한 Claude Code 플러그인입니다. Modern C# 12/13, 
 | **csharp-best-practices** | C# 12/.NET 8 코드 작성 가이드라인 knowledge-base (12개 규칙, vercel-react-best-practices 3-tier 아키텍처 참조) |
 | **csharp-tdd-develop** | TDD 기반 C# 개발 (Red-Green-Refactor 워크플로우) |
 | **csharp-test-develop** | 기존 C# 코드에 테스트 코드 작성 |
+| **project-setup** | C#/.NET 프로젝트를 Claude Code용으로 초기화 (CLAUDE.md + Bash/PowerShell 컨텍스트 hook) — [agents.md outperforms skills](https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals) 기반 |
 
 ### MCP Servers
 | Server | 설명 |
@@ -108,6 +109,14 @@ c-sharp-marketplace/
 │   │   ├── SKILL.md         # 테스트 코드 작성 스킬
 │   │   └── references/
 │   │       └── csharp-test-patterns.md  # C# 테스트 패턴 가이드
+│   ├── project-setup/
+│   │   ├── SKILL.md         # 프로젝트 초기화 스킬
+│   │   ├── scripts/
+│   │   │   ├── setup.sh     # Hook 설치 (Bash)
+│   │   │   └── setup.ps1    # Hook 설치 (PowerShell)
+│   │   ├── references/
+│   │   │   └── claude-md-template.md  # CLAUDE.md 생성 템플릿
+│   │   └── assets/hooks/    # Hook 스크립트 (.sh + .ps1)
 │   └── wpf-mvvm-generator/
 │       └── SKILL.md         # MVVM 생성 스킬
 ├── .mcp.json                # MCP 서버 설정
@@ -179,6 +188,14 @@ c-sharp-marketplace/
 /wpf-mvvm-generator User                    # User에 대한 전체 MVVM 생성
 /wpf-mvvm-generator Product viewmodel       # ProductViewModel만 생성
 /wpf-mvvm-generator Order view              # OrderView만 생성
+```
+
+#### 프로젝트 셋업
+```
+/project-setup                              # 현재 프로젝트 초기화
+/project-setup init /path/to/project        # 특정 프로젝트 초기화
+/project-setup migrate                      # 기존 CLAUDE.md에 섹션 추가
+/project-setup hooks                        # hook 스크립트만 설치
 ```
 
 ### MCP 서버 (Context7)

@@ -26,6 +26,7 @@ A Claude Code plugin for C# and WPF development. Provides expert agents and code
 | **csharp-best-practices** | C# 12/.NET 8 coding guidelines knowledge-base (12 rules, 3-tier architecture inspired by vercel-react-best-practices) |
 | **csharp-tdd-develop** | TDD-based C# development (Red-Green-Refactor workflow) |
 | **csharp-test-develop** | Write test code for existing C# classes |
+| **project-setup** | Initialize C#/.NET project for Claude Code (CLAUDE.md + context hooks for Bash/PowerShell) — based on [agents.md outperforms skills](https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals) |
 
 ### MCP Servers
 | Server | Description |
@@ -110,6 +111,14 @@ c-sharp-marketplace/
 │   │   ├── SKILL.md         # Test code writing skill
 │   │   └── references/
 │   │       └── csharp-test-patterns.md  # C# test patterns guide
+│   ├── project-setup/
+│   │   ├── SKILL.md         # Project initialization skill
+│   │   ├── scripts/
+│   │   │   ├── setup.sh     # Hook setup (Bash)
+│   │   │   └── setup.ps1    # Hook setup (PowerShell)
+│   │   ├── references/
+│   │   │   └── claude-md-template.md  # CLAUDE.md generation template
+│   │   └── assets/hooks/    # Hook scripts (.sh + .ps1)
 │   └── wpf-mvvm-generator/
 │       └── SKILL.md         # MVVM generation skill
 ├── .mcp.json                # MCP server configuration
@@ -181,6 +190,14 @@ Agents can be invoked directly using `@agent-name`, or Claude Code will automati
 /wpf-mvvm-generator User                    # Generate full MVVM for User
 /wpf-mvvm-generator Product viewmodel       # Generate ProductViewModel only
 /wpf-mvvm-generator Order view              # Generate OrderView only
+```
+
+#### Project Setup
+```
+/project-setup                              # Initialize current project
+/project-setup init /path/to/project        # Initialize specific project
+/project-setup migrate                      # Add sections to existing CLAUDE.md
+/project-setup hooks                        # Install hook scripts only
 ```
 
 ### MCP Server (Context7)
