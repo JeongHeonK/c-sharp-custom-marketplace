@@ -88,10 +88,10 @@ When a task matches below, explore relevant code first, then invoke the skill.
 | 기존 코드에 테스트 추가 | `/csharp-test-develop <file>` | 대상 파일과 의존성 먼저 파악 |
 
 ### Code Quality (코드 작성 후)
-| Task | Skill |
-|------|-------|
-| 코드 리뷰 | `/csharp-code-review <file>` — 커밋 전 모든 수정된 .cs 파일에 |
-| 리팩토링 | `/csharp-refactor <file> <type>` — SOLID 위반/코드 스멜 발견 시 |
+| Task | Skill | When to invoke |
+|------|-------|---------------|
+| 코드 리뷰 | `/csharp-code-review <file>` | 커밋 전 모든 수정된 .cs 파일에 |
+| 리팩토링 | `/csharp-refactor <file> <type>` | SOLID 위반/코드 스멜 발견 시 |
 
 ### Scaffolding
 | Task | Skill |
@@ -114,7 +114,7 @@ When a task matches below, explore relevant code first, then invoke the skill.
 | `{메인 프로젝트 경로}` | OutputType이 Exe/WinExe인 `.csproj` 경로 | src/MyApp/MyApp.csproj |
 | `{감지된 프로젝트 구조}` | 디렉토리 트리 | src/, tests/ 구조 |
 | `{주요 NuGet 패키지 목록}` | `<PackageReference>` 항목 | CommunityToolkit.Mvvm 등 |
-| `{plugin-path}` | Glob `**/skills/csharp-best-practices/rules/` 경로에서 resolve | `/home/user/.claude/plugins/.../skills/csharp-best-practices` |
+| `{plugin-path}` | Glob `**/skills/csharp-best-practices/SKILL.md`의 부모 디렉토리 | `/home/user/.claude/plugins/.../skills/csharp-best-practices` |
 
 ## 조건부 섹션
 
