@@ -1,6 +1,6 @@
 # C# Marketplace Plugin
 
-[![Version](https://img.shields.io/badge/version-1.6.0-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-1.6.1-blue.svg)]()
 [![.NET](https://img.shields.io/badge/.NET-8%2F9-purple.svg)]()
 [![C#](https://img.shields.io/badge/C%23-12%2F13-green.svg)]()
 [![Claude Code](https://img.shields.io/badge/Claude_Code-2.1.3+-orange.svg)]()
@@ -270,7 +270,7 @@ Add "use context7" to your prompt for documentation search:
 
 ## Changelog
 
-### v1.6.0 (2026-02-02)
+### v1.6.1 (2026-02-03)
 
 **Inline Docs Index Pattern — Passive Context for CLAUDE.md**
 
