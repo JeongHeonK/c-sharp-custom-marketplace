@@ -154,7 +154,7 @@ allowed-tools:
    - 테스트 미존재 시 제거: `### Test Patterns` + Test 커맨드 행
    - TargetFramework < net8.0: C# 12 섹션에 경고 노트 추가 (섹션 유지)
 
-4. **공통**:
+5. **공통**:
    - `README.md` / `README.ko.md` Skills 섹션 업데이트
    - `CLAUDE.md` File Structure 트리 업데이트
 
