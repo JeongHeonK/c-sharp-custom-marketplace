@@ -270,15 +270,15 @@ c-sharp-marketplace/
 
 ### v1.6.0 (2026-02-02)
 
-**CLAUDE.md 템플릿에 Docs Index 패턴 적용**
+**Inline Docs Index 패턴 — CLAUDE.md에 Passive Context 적용**
 
-[Vercel의 agents.md outperforms skills](https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals) 연구 결과를 반영하여 `project-setup`이 생성하는 CLAUDE.md 템플릿을 개선했습니다.
+`project-setup`이 생성하는 CLAUDE.md 템플릿에 2-tier "인라인 docs index" 패턴을 적용했습니다. C# best practices, 테스트 패턴, WPF/MVVM의 핵심 내용이 `## C#/.NET Quick Reference`에 **압축 요약으로 인라인**되어, 에이전트가 매 턴마다 별도의 파일 Read 없이 passive context로 활용할 수 있습니다. 상세 참조 파일은 `## Detailed References`에 유지됩니다.
 
 | 변경 사항 | 설명 |
 |-----------|------|
-| **claude-md-template.md** (수정) | "Skill Invocation Guidelines"를 docs index(`C#/.NET Coding Guidelines`) + explore-first(`Skill Workflows`) 섹션으로 교체 |
-| **project-setup/SKILL.md** (수정) | 검증 체크리스트를 새 섹션명에 맞게 업데이트 |
-| **CLAUDE.md** (수정) | 플러그인 유지보수를 위한 `Development Guidelines` 섹션 추가 |
+| **claude-md-template.md** (수정) | `## C#/.NET Quick Reference` 추가 (~140줄 인라인 요약); 파일 경로 테이블을 `## Detailed References`로 리네임; WPF, Test, TargetFramework 조건부 섹션 추가 |
+| **project-setup/SKILL.md** (수정) | Step 4 조건부 섹션 처리 확장 (4개 조건); Step 6 검증 체크리스트에 Quick Reference 확인 추가; migrate 서브커맨드 업데이트 |
+| **CLAUDE.md** (수정) | Development Guidelines에 Quick Reference + Detailed References 유지보수 지침 업데이트 |
 
 ---
 
