@@ -108,15 +108,20 @@ Write 도구로 `<target>/CLAUDE.md` 생성. `references/claude-md-template.md` 
 
 1. Read로 `references/claude-md-template.md` 읽기
 2. 템플릿의 `{변수}`를 Step 2 감지 결과로 치환
-3. 조건부 섹션 적용 (WPF가 아닌 경우 `/wpf-mvvm-generator` 관련 항목 제거)
+3. 조건부 섹션 적용:
+   - **WPF 프로젝트가 아닌 경우**: `### WPF/MVVM Patterns` 섹션 제거 + `Skill Workflows > Scaffolding` 섹션 제거
+   - **테스트 프로젝트가 없는 경우**: `### Test Patterns` 섹션 제거 + `Build & Test Commands`에서 Test 행 제거
+   - **TargetFramework < net8.0인 경우**: `### C# 12 Features (.NET 8)` 섹션 상단에 경고 노트 추가 (`> ⚠ 현재 프로젝트는 {TargetFramework}입니다. C# 12 기능은 .NET 8+ 에서 사용 가능합니다.`)
 4. Write로 `<target>/CLAUDE.md` 생성
 
 #### migrate 서브커맨드: 기존 CLAUDE.md에 섹션 추가
 
 1. 기존 CLAUDE.md를 Read
 2. `## Context Management` 섹션이 없으면 Edit으로 추가
-3. `## C#/.NET Coding Guidelines` + `## Skill Workflows` 섹션이 없으면 Edit으로 추가
-4. 기존 내용은 절대 삭제하지 않음
+3. `## C#/.NET Quick Reference` 섹션이 없으면 Edit으로 추가 (템플릿의 Quick Reference 전체)
+4. `## Detailed References` 섹션이 없으면 Edit으로 추가 (기존 `## C#/.NET Coding Guidelines`가 있으면 `## Detailed References`로 리네임)
+5. `## Skill Workflows` 섹션이 없으면 Edit으로 추가
+6. 기존 내용은 절대 삭제하지 않음
 
 ---
 
@@ -226,7 +231,10 @@ Write 도구로 `<target>/CLAUDE.md` 생성. `references/claude-md-template.md` 
 - [ ] `.claude/context/` 디렉토리 존재
 - [ ] `.claude/learnings/` 디렉토리 존재
 - [ ] `.claude/settings.local.json`에 hook 등록 확인
-- [ ] `CLAUDE.md`에 C#/.NET Coding Guidelines + Skill Workflows 섹션 존재 (init/migrate)
+- [ ] `CLAUDE.md`에 `## C#/.NET Quick Reference` 섹션 존재 (init/migrate)
+- [ ] `CLAUDE.md`에 `## Detailed References` 섹션 존재 (init/migrate)
+- [ ] `CLAUDE.md`에 `## Skill Workflows` 섹션 존재 (init/migrate)
+- [ ] 조건부 섹션 정상 적용: WPF가 아닌 경우 WPF 섹션 없음, 테스트 없는 경우 Test 섹션 없음
 
 검증 실패 항목이 있으면 사용자에게 알리고 수동 조치 방법 안내.
 

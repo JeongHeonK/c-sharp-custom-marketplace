@@ -137,8 +137,8 @@ allowed-tools:
 새 스킬을 추가하거나 기존 스킬을 수정할 때 반드시 다음을 업데이트:
 
 1. **Knowledge-base 스킬 추가 시**:
-   - `skills/project-setup/references/claude-md-template.md`의 `C#/.NET Coding Guidelines` 섹션에 docs index 행 추가
-   - 파일 경로 + "When to Read" 트리거 조건 명시
+   - `skills/project-setup/references/claude-md-template.md`의 `## C#/.NET Quick Reference` 섹션에 인라인 요약 추가
+   - `## Detailed References` 섹션에 파일 경로 + "When to Read" 트리거 조건 행 추가
    - `/csharp-best-practices` SKILL.md Rules 테이블에도 동기화
 
 2. **Workflow/Generator 스킬 추가 시**:
@@ -146,8 +146,13 @@ allowed-tools:
    - "Pre-invoke" 컬럼에 explore-first 지시 포함
 
 3. **rules/ 파일 추가/삭제 시**:
-   - `claude-md-template.md` docs index 테이블 동기화
+   - `claude-md-template.md` Quick Reference 인라인 요약 + Detailed References 테이블 동기화
    - `csharp-best-practices/SKILL.md` Rules 테이블 동기화
+
+4. **조건부 섹션 관련**:
+   - WPF 비대상 시 제거: `### WPF/MVVM Patterns` + `Scaffolding` 워크플로우
+   - 테스트 미존재 시 제거: `### Test Patterns` + Test 커맨드 행
+   - TargetFramework < net8.0: C# 12 섹션에 경고 노트 추가 (섹션 유지)
 
 4. **공통**:
    - `README.md` / `README.ko.md` Skills 섹션 업데이트
