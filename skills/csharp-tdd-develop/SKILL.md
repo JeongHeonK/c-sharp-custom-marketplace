@@ -9,7 +9,8 @@ allowed-tools:
   - Read
   - Write
   - Edit
-  - Bash
+  - Bash(node *)
+  - Bash(dotnet test *)
   - Glob
   - Grep
   - Task

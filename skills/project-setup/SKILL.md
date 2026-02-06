@@ -75,10 +75,14 @@ C#/.NET 프로젝트를 Claude Code용으로 초기화하는 스킬. CLAUDE.md �
 
 ### Step 3: Hook 스크립트 설치
 
-**OS 감지**: Bash 도구로 OS를 확인하여 적절한 스크립트 선택:
-- `uname` 명령어로 OS 확인
-- Windows (MINGW/MSYS/CYGWIN/WSL 아닌 환경) → PowerShell 사용
-- Linux/macOS/WSL → Bash 사용
+**OS 감지**: `uname -s` 결과로 환경 판별:
+
+| `uname -s` 결과 | 환경 | 스크립트 |
+|-----------------|------|----------|
+| `Linux` | Linux/WSL | setup.sh |
+| `Darwin` | macOS | setup.sh |
+| `MINGW*` / `MSYS*` / `CYGWIN*` | Git Bash/MSYS2 | setup.sh |
+| 명령 실패 또는 그 외 | Windows (native) | setup.ps1 |
 
 #### Bash 환경 (Linux/macOS/WSL):
 ```bash
@@ -90,13 +94,7 @@ bash <plugin-path>/skills/project-setup/scripts/setup.sh <target-dir>
 pwsh <plugin-path>/skills/project-setup/scripts/setup.ps1 -TargetDir <target-dir>
 ```
 
-여기서 `<plugin-path>`는 이 SKILL.md 파일이 위치한 플러그인의 루트 경로입니다.
-이 경로를 확인하려면 Glob으로 `**/skills/project-setup/scripts/setup.sh` 또는 `**/skills/project-setup/scripts/setup.ps1`을 검색하세요.
-
-**setup 스크립트가 수행하는 작업:**
-- `assets/hooks/*` (.sh + .ps1) → `<target>/scripts/hooks/`로 복사
-- `chmod +x` 설정 (bash 스크립트)
-- `.claude/context/`, `.claude/learnings/` 디렉토리 생성
+`<plugin-path>`는 이 SKILL.md의 부모 디렉토리(`skills/project-setup/`)의 절대 경로입니다. setup 스크립트가 hook 파일 복사, 실행 권한 설정, 디렉토리 생성을 수행합니다.
 
 ---
 
@@ -133,87 +131,24 @@ Write 도구로 `<target>/CLAUDE.md` 생성. `references/claude-md-template.md` 
    - **PowerShell 환경**: `pwsh scripts/hooks/<name>.ps1`
 3. 기존 hooks 설정이 있으면 병합, 없으면 새로 추가:
 
-#### Bash 환경 (Linux/macOS/WSL):
+#### Hook 등록 구조
+
 ```json
 {
   "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash scripts/hooks/session-start.sh"
-          }
-        ]
-      }
-    ],
-    "PreCompact": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash scripts/hooks/pre-compact.sh"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash scripts/hooks/session-complete.sh"
-          }
-        ]
-      }
-    ]
+    "SessionStart": [{ "matcher": "", "hooks": [{ "type": "command", "command": "<runner> scripts/hooks/session-start.<ext>" }] }],
+    "PreCompact":   [{ "matcher": "", "hooks": [{ "type": "command", "command": "<runner> scripts/hooks/pre-compact.<ext>" }] }],
+    "Stop":         [{ "matcher": "", "hooks": [{ "type": "command", "command": "<runner> scripts/hooks/session-complete.<ext>" }] }]
   }
 }
 ```
 
-#### PowerShell 환경 (Windows):
-```json
-{
-  "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "pwsh scripts/hooks/session-start.ps1"
-          }
-        ]
-      }
-    ],
-    "PreCompact": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "pwsh scripts/hooks/pre-compact.ps1"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "pwsh scripts/hooks/session-complete.ps1"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
+**`<runner>` / `<ext>` 치환:**
+
+| 환경 | `<runner>` | `<ext>` |
+|------|-----------|---------|
+| Bash (Linux/macOS/WSL) | `bash` | `sh` |
+| PowerShell (Windows) | `pwsh` | `ps1` |
 
 4. 기존 설정이 있으면 `hooks` 키에 병합 (기존 hook은 유지)
 
