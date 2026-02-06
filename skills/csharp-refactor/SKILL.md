@@ -13,114 +13,130 @@ allowed-tools:
   - Write
 ---
 
-# C# Refactoring Skill
+# C# 리팩토링 스킬
 
-Systematically refactors C# code to improve maintainability, readability, and adherence to best practices.
+유지보수성, 가독성, 베스트 프랙티스 준수를 위해 C# 코드를 체계적으로 리팩토링합니다.
 
-## Arguments
+**중요: 모든 결과는 반드시 한국어로 작성합니다.** 코드 식별자, 기술 용어, 패턴 이름 등은 원문 그대로 유지하되, 설명·문제점·개선안 등 서술 부분은 한국어를 사용합니다.
 
-- `$ARGUMENTS[0]`: Target file path (optional, will scan for .cs files if not provided)
-- `$ARGUMENTS[1]`: Refactor type (optional): `solid`, `pattern`, `modern`, `extract`, `all`
+## 인자
 
-## Execution Steps
+- `$ARGUMENTS[0]`: 대상 파일 경로 (선택, 미지정 시 .cs 파일 탐색)
+- `$ARGUMENTS[1]`: 리팩토링 유형 (선택): `solid`, `pattern`, `modern`, `extract`, `all`
+  - 미지정 시: 모든 카테고리를 스캔하고, 발견된 항목만 적용
 
-### Step 1: Identify Target
+## 실행 단계
 
-If no file specified (`$ARGUMENTS[0]` is empty):
-- Scan for recently modified `.cs` files
-- Ask user to select target file(s)
+### 1단계: 대상 식별
 
-### Step 2: Analyze Code
+파일이 지정되지 않은 경우 (`$ARGUMENTS[0]`이 비어있음):
+- 최근 수정된 `.cs` 파일 탐색
+- 사용자에게 대상 파일 선택 요청
 
-Read and analyze the target code for refactoring opportunities.
+### 2단계: 코드 분석
 
-### Step 3: Apply Refactoring
+대상 코드를 읽고 리팩토링 기회를 분석합니다.
 
-Based on `$ARGUMENTS[1]` or analyze all categories:
+**TargetFramework 확인**: `.csproj`에서 `<TargetFramework>`를 읽어 C# 버전을 파악하고, 해당 버전에서 사용 가능한 기능만 제안합니다.
 
-## Refactoring Categories
+### 3단계: 리팩토링 적용
 
-### SOLID Refactoring (`solid`)
+`$ARGUMENTS[1]` 기준 또는 전체 카테고리를 분석합니다:
 
-| Violation | Refactoring |
-|-----------|-------------|
-| **SRP** | Extract class, Split responsibilities |
-| **OCP** | Introduce Strategy/Template Method pattern |
-| **LSP** | Fix inheritance hierarchy, Use composition |
-| **ISP** | Split interface into smaller ones |
-| **DIP** | Extract interface, Inject dependencies |
+## 리팩토링 카테고리
 
-### Pattern Introduction (`pattern`)
+### SOLID 리팩토링 (`solid`)
 
-| Code Smell | Suggested Pattern |
-|------------|-------------------|
-| Complex object creation | Builder, Factory Method |
-| Multiple conditionals on type | Strategy, State |
-| Global state access | Singleton (cautiously), DI |
-| Complex subsystem | Facade |
-| Tree/composite structures | Composite |
-| Adding features dynamically | Decorator |
-| Request handling chain | Chain of Responsibility |
+| 위반 | 리팩토링 |
+|------|----------|
+| **SRP** | Extract class, 책임 분리 |
+| **OCP** | Strategy/Template Method 패턴 도입 |
+| **LSP** | 상속 계층 수정, Composition 사용 |
+| **ISP** | 인터페이스를 작은 단위로 분리 |
+| **DIP** | 인터페이스 추출, 의존성 주입 |
 
-### Modern C# Syntax (`modern`)
+### Pattern 도입 (`pattern`)
 
-| Old Syntax | Modern Alternative |
-|------------|-------------------|
-| Constructor + field assignment | Primary constructor |
-| `new List<T> { ... }` | Collection expressions `[...]` |
-| Multiple null checks | Pattern matching, `?.`, `??` |
-| Verbose switch statements | Switch expressions |
-| Manual INPC implementation | `[ObservableProperty]` (CommunityToolkit.Mvvm) |
-| Mutable properties (non-MVVM) | `required`, `init` for immutability |
-| Class for simple data | Record types |
-| Traditional foreach | LINQ where appropriate |
+| Code Smell | 권장 패턴 |
+|------------|-----------|
+| 복잡한 객체 생성 | Builder, Factory Method |
+| 타입별 다중 조건문 | Strategy, State |
+| 전역 상태 접근 | Singleton (신중하게), DI |
+| 복잡한 하위 시스템 | Facade |
+| 트리/복합 구조 | Composite |
+| 동적 기능 추가 | Decorator |
+| 요청 처리 체인 | Chain of Responsibility |
 
-### Extract Refactoring (`extract`)
+### Modern C# 문법 (`modern`)
 
-- **Extract Method**: Long methods → smaller, focused methods
-- **Extract Class**: Large class → multiple cohesive classes
-- **Extract Interface**: Concrete dependencies → interface abstraction
-- **Extract Base Class**: Duplicate code → shared base
-- **Extract Parameter Object**: Many parameters → single object
+| 기존 문법 | Modern 대안 | 최소 버전 |
+|-----------|-------------|-----------|
+| 생성자 + 필드 할당 | Primary constructor | C# 12 |
+| `new List<T> { ... }` | Collection expressions `[...]` | C# 12 |
+| 다중 null 체크 | Pattern matching, `?.`, `??` | C# 8 |
+| 장황한 switch 문 | Switch expressions | C# 8 |
+| 수동 INPC 구현 | `[ObservableProperty]` (CommunityToolkit.Mvvm) | - |
+| 변경 가능한 프로퍼티 (non-MVVM) | `required`, `init` | C# 11 |
+| 단순 데이터용 class | Record types | C# 9 |
+| 전통적 foreach | LINQ (적절한 경우) | - |
 
-## Output Format
+### Extract 리팩토링 (`extract`)
+
+- **Extract Method**: 긴 메서드 → 작고 집중된 메서드
+- **Extract Class**: 큰 클래스 → 여러 응집된 클래스
+- **Extract Interface**: 구체 의존성 → 인터페이스 추상화
+- **Extract Base Class**: 중복 코드 → 공유 기반 클래스
+- **Extract Parameter Object**: 다수 매개변수 → 단일 객체
+
+## 출력 형식
+
+모든 내용은 **한국어**로 작성합니다. 코드 식별자와 기술 용어는 원문을 유지합니다.
 
 ```markdown
-# Refactoring Results
+# 리팩토링 결과
 
-## Target
-- File: {file_path}
-- Refactor Type: {type}
+## 대상
+- 파일: {파일 경로}
+- 리팩토링 유형: {유형}
+- TargetFramework: {버전}
 
-## Changes Applied
+## 적용된 변경
 
-### {Refactoring Name}
-- Location: `file.cs:line`
-- Before:
+### {리팩토링 이름}
+- 위치: `file.cs:line`
+- 변경 전:
 ```csharp
-// old code
+// 기존 코드
 ```
-- After:
+- 변경 후:
 ```csharp
-// refactored code
+// 리팩토링된 코드
 ```
-- Benefit: {explanation}
+- 이점: {설명}
 
-## Summary
-- Total refactorings: {N}
-- Lines changed: {N}
-- New files created: {list if any}
+## 요약
+- 총 리팩토링: {N}건
+- 변경된 줄 수: {N}
+- 새로 생성된 파일: {목록}
 
-## Recommendations
-- Further improvements that could be made
-- Related patterns to consider
+## 추가 권장 사항
+- 추가로 적용 가능한 개선 사항
+- 고려할 관련 패턴
 ```
 
-## Guidelines
+## 에러 처리
 
-- Preserve existing functionality (no behavior changes)
-- Make incremental changes, not massive rewrites
-- Prioritize readability over cleverness
-- Consider team familiarity with patterns
-- Add comments only where logic is non-obvious
-- Run tests after each refactoring if available
+| 상황 | 처리 |
+|------|------|
+| `.cs` 파일 없음 | "리팩토링 대상 .cs 파일이 없습니다" 메시지 출력 후 종료 |
+| 대상 파일 미발견 | 사용자에게 파일 경로 재확인 요청 |
+| TargetFramework < net8.0 | C# 12 전용 기능 제안 제외, 경고 노트 출력 |
+
+## 가이드라인
+
+- 기존 기능을 유지합니다 (동작 변경 없음)
+- 대규모 재작성이 아닌 점진적 변경을 합니다
+- 영리함보다 가독성을 우선합니다
+- 팀의 패턴 친숙도를 고려합니다
+- 로직이 명확하지 않은 경우에만 주석을 추가합니다
+- 테스트 프로젝트가 존재하면 `dotnet test` 실행 후 회귀 없음을 확인합니다
