@@ -12,35 +12,44 @@ allowed-tools:
   - Edit
 ---
 
-# WPF MVVM Generator Skill
+# WPF MVVM Generator 스킬
 
-Generates WPF MVVM components using CommunityToolkit.Mvvm source generators.
+CommunityToolkit.Mvvm source generator를 사용하여 WPF MVVM 컴포넌트를 생성합니다.
 
-## Arguments
+**중요: 모든 결과는 반드시 한국어로 작성합니다.** 코드 식별자, 기술 용어, 패턴 이름 등은 원문 그대로 유지하되, 설명 부분은 한국어를 사용합니다.
 
-- `$ARGUMENTS[0]`: Entity name (required) - e.g., `User`, `Product`, `Order`
-- `$ARGUMENTS[1]`: Generation type (optional): `viewmodel`, `view`, `model`, `all` (default: `all`)
+## 인자
 
-## Execution Steps
+- `$ARGUMENTS[0]`: 엔티티 이름 (필수) - 예: `User`, `Product`, `Order`
+- `$ARGUMENTS[1]`: 생성 유형 (선택): `viewmodel`, `view`, `model`, `all` (기본값: `all`)
+  - `all`: Model + ViewModel + View + Code-Behind + Messages + Service Interface 모두 생성
 
-### Step 1: Validate Arguments
+## 실행 단계
 
-If `$ARGUMENTS[0]` is empty:
-- Ask user for entity name
-- Suggest based on existing Models in the project
+### 1단계: 인자 검증
 
-### Step 2: Scan Project Structure
+`$ARGUMENTS[0]`이 비어있는 경우:
+- 사용자에게 엔티티 이름 요청
+- 프로젝트의 기존 Model 기반으로 제안
 
-Identify existing patterns:
-- Check `/ViewModels`, `/Views`, `/Models` directories
-- Detect namespace conventions
-- Find existing base classes or interfaces
+**엔티티 이름 검증:**
+- PascalCase 여부 확인
+- C# 예약어 사용 확인
+- 특수문자, 공백 포함 시 사용자에게 재입력 요청
 
-### Step 3: Generate Code
+### 2단계: 프로젝트 구조 탐색
 
-Based on `$ARGUMENTS[1]`:
+기존 패턴을 식별:
+- `Glob("**/*ViewModel.cs")`로 기존 ViewModel 패턴 확인
+- 첫 번째 발견된 파일에서 네임스페이스 추출
+- `/ViewModels`, `/Views`, `/Models` 디렉토리 존재 여부 확인
+- 기존 베이스 클래스 또는 인터페이스 탐색
 
-## Generated Components
+### 3단계: 코드 생성
+
+`$ARGUMENTS[1]` 기준으로 생성:
+
+## 생성 컴포넌트
 
 ### Model (`model`)
 
@@ -54,7 +63,7 @@ public sealed class {EntityName}
 {
     public required int Id { get; init; }
     public required string Name { get; init; }
-    // Additional properties based on context
+    // 컨텍스트에 따른 추가 프로퍼티
 }
 ```
 
@@ -182,7 +191,7 @@ public partial class {EntityName}ViewModel : ObservableObject
 </UserControl>
 ```
 
-### Code-Behind (minimal)
+### Code-Behind (최소한)
 
 ```csharp
 namespace {Namespace}.Views;
@@ -220,35 +229,46 @@ public interface I{EntityName}Service
 }
 ```
 
-## Output Format
+## 출력 형식
+
+모든 내용은 **한국어**로 작성합니다. 코드 식별자와 기술 용어는 원문을 유지합니다.
 
 ```markdown
-# MVVM Generation Results
+# MVVM 생성 결과
 
-## Entity: {EntityName}
+## 엔티티: {EntityName}
 
-### Generated Files
-| File | Path | Status |
-|------|------|--------|
-| Model | /Models/{EntityName}.cs | Created |
-| ViewModel | /ViewModels/{EntityName}ViewModel.cs | Created |
-| View | /Views/{EntityName}View.xaml | Created |
-| Code-Behind | /Views/{EntityName}View.xaml.cs | Created |
-| Messages | /Messages/{EntityName}Messages.cs | Created |
-| Service Interface | /Services/I{EntityName}Service.cs | Created |
+### 생성된 파일
+| 파일 | 경로 | 상태 |
+|------|------|------|
+| Model | /Models/{EntityName}.cs | 생성됨 |
+| ViewModel | /ViewModels/{EntityName}ViewModel.cs | 생성됨 |
+| View | /Views/{EntityName}View.xaml | 생성됨 |
+| Code-Behind | /Views/{EntityName}View.xaml.cs | 생성됨 |
+| Messages | /Messages/{EntityName}Messages.cs | 생성됨 |
+| Service Interface | /Services/I{EntityName}Service.cs | 생성됨 |
 
-### Next Steps
-1. Implement `I{EntityName}Service`
-2. Register in DI container
-3. Add navigation to the view
-4. Create design-time data if needed
+### 다음 단계
+1. `I{EntityName}Service` 구현
+2. DI 컨테이너에 등록
+3. View 내비게이션 추가
+4. 필요 시 디자인 타임 데이터 생성
 ```
 
-## Guidelines
+## 에러 처리
 
-- Use CommunityToolkit.Mvvm source generators exclusively
-- Follow existing project naming conventions
-- Generate minimal code-behind (UI logic only)
-- Include proper XML documentation
-- Support async operations with cancellation
-- Use WeakReferenceMessenger for cross-ViewModel communication
+| 상황 | 처리 |
+|------|------|
+| 엔티티 이름 미입력 | 사용자에게 요청, 기존 Model 기반 제안 |
+| 유효하지 않은 이름 (특수문자, 예약어) | 사용자에게 재입력 요청 |
+| ViewModels/Views/Models 디렉토리 없음 | 디렉토리 자동 생성 후 진행 |
+| 동일 이름 파일 존재 | 사용자에게 덮어쓰기 확인 |
+
+## 가이드라인
+
+- CommunityToolkit.Mvvm source generator를 사용합니다
+- 기존 프로젝트 명명 규칙을 따릅니다
+- 최소한의 Code-Behind을 생성합니다 (UI 로직만)
+- 적절한 XML 문서화를 포함합니다
+- 비동기 작업에 CancellationToken을 지원합니다
+- ViewModel 간 통신에 WeakReferenceMessenger를 사용합니다
