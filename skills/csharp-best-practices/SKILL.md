@@ -4,6 +4,10 @@ description: C# 12 / .NET 8 기준 코드 작성 가이드라인. 코드 작성 
 user-invocable: true
 context: current
 argument-hint: "[topic]"
+allowed-tools:
+  - Read
+  - Glob
+  - Grep
 ---
 
 # C# Best Practices

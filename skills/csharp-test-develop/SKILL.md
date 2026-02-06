@@ -9,7 +9,8 @@ allowed-tools:
   - Read
   - Write
   - Edit
-  - Bash
+  - Bash(node *)
+  - Bash(dotnet test *)
   - Glob
   - Grep
   - Task
@@ -53,6 +54,7 @@ allowed-tools:
 .csproj 파일에서 테스트 환경 자동 감지.
 
 ```bash
+# csharp-tdd-develop의 test-detector.js 재사용
 node skills/csharp-tdd-develop/scripts/test-detector.js --detect
 ```
 
@@ -188,6 +190,8 @@ Runner: xUnit ✓ | FluentAssertions: YES ✓ | Moq: YES ✓
 ---
 
 ## 테스트 파일 경로 규칙
+
+**경로 결정 기준**: Repository/Database 접근 코드 → `IntegrationTests`, 나머지 → `UnitTests`
 
 | 소스 위치 | 테스트 위치 |
 |-----------|------------|
