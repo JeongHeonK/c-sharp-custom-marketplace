@@ -76,12 +76,12 @@ OOP 원칙, SOLID 원칙, GoF 디자인 패턴, 최신 C# 기능, 성능 관점�
 |------|-----------|
 | **Primary constructors** | 간단한 초기화를 가진 클래스 |
 | **Collection expressions** | 배열/리스트 초기화 `[1, 2, 3]` |
-| **required 프로퍼티** | 생성자 없이 필수 초기화 보장 |
+| **required properties** | 생성자 없이 필수 초기화 보장 |
 | **init-only setters** | 불변 객체 |
-| **record 타입** | 값 기반 동등성, DTO |
-| **패턴 매칭** | 복잡한 조건문, 타입 검사 |
-| **파일 범위 네임스페이스** | 들여쓰기 축소 |
-| **Raw string 리터럴** | 여러 줄 문자열, JSON, SQL |
+| **record types** | 값 기반 동등성, DTO |
+| **Pattern matching** | 복잡한 조건문, 타입 검사 |
+| **File-scoped namespaces** | 들여쓰기 축소 |
+| **Raw string literals** | 여러 줄 문자열, JSON, SQL |
 
 ### 성능 리뷰
 | 카테고리 | 리뷰 항목 |
