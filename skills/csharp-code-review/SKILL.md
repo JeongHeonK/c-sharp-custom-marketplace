@@ -11,192 +11,196 @@ allowed-tools:
   - Grep
 ---
 
-# C# Code Review Skill
+# C# 코드 리뷰 스킬
 
-Systematically reviews C# code from OOP principles, SOLID principles, GoF design patterns, modern C# features, and performance perspectives.
+OOP 원칙, SOLID 원칙, GoF 디자인 패턴, 최신 C# 기능, 성능 관점에서 C# 코드를 체계적으로 리뷰합니다.
 
-## Arguments
+**중요: 모든 리뷰 결과는 반드시 한국어로 작성합니다.** 코드 식별자, 기술 용어, 패턴 이름 등은 원문 그대로 유지하되, 설명·문제점·개선안 등 서술 부분은 한국어를 사용합니다.
 
-- `$ARGUMENTS[0]`: Target file or directory path (optional, will scan for recently modified .cs files if not provided)
+## 인자
 
-## Execution Steps
+- `$ARGUMENTS[0]`: 대상 파일 또는 디렉토리 경로 (선택, 미지정 시 최근 수정된 .cs 파일을 탐색)
 
-### Step 1: Identify Review Target
-If the user hasn't specified a file:
-- Check recently modified `.cs` files
-- Or ask the user to specify files/directories to review
+## 실행 단계
 
-### Step 2: Code Analysis
-Read the target code and analyze from the following perspectives.
+### 1단계: 리뷰 대상 식별
+사용자가 파일을 지정하지 않은 경우:
+- 최근 수정된 `.cs` 파일 확인
+- 또는 사용자에게 리뷰할 파일/디렉토리 지정 요청
 
-## Review Checklist
+### 2단계: 코드 분석
+대상 코드를 읽고 아래 관점에서 분석합니다.
 
-### OOP Four Pillars
-| Principle | Review Items |
-|-----------|--------------|
-| **Encapsulation** | Private fields, property access, hidden implementation details |
-| **Inheritance** | Proper inheritance hierarchy, composition over inheritance |
-| **Polymorphism** | Interface/abstract class usage, virtual method appropriateness |
-| **Abstraction** | Appropriate abstraction level, unnecessary detail exposure |
+## 리뷰 체크리스트
 
-### SOLID Principles
-| Principle | Review Items | Violation Signs |
-|-----------|--------------|-----------------|
-| **SRP** | Does the class have single responsibility? | Class changes for multiple reasons, too many methods |
-| **OCP** | Open for extension, closed for modification? | Existing code requires modification for new features, switch/if-else chains |
-| **LSP** | Can subtypes substitute base types? | Exceptions in subclasses, empty method overrides |
-| **ISP** | Are interfaces segregated per client? | NotImplementedException in implementations, unused methods |
-| **DIP** | Depending on abstractions? | Direct instantiation with new, concrete class type dependencies |
+### OOP 4대 원칙
+| 원칙 | 리뷰 항목 |
+|------|-----------|
+| **캡슐화** | private 필드, 프로퍼티 접근, 구현 세부사항 은닉 |
+| **상속** | 적절한 상속 계층, 상속보다 합성 우선 |
+| **다형성** | 인터페이스/추상 클래스 활용, virtual 메서드 적절성 |
+| **추상화** | 적절한 추상화 수준, 불필요한 세부사항 노출 |
 
-### GoF Design Pattern Opportunities
-Identify areas in the code where these patterns could be applied:
+### SOLID 원칙
+| 원칙 | 리뷰 항목 | 위반 징후 |
+|------|-----------|-----------|
+| **SRP** | 클래스가 단일 책임을 갖는가? | 여러 이유로 클래스가 변경됨, 메서드 과다 |
+| **OCP** | 확장에 열려있고 수정에 닫혀있는가? | 새 기능 추가 시 기존 코드 수정 필요, switch/if-else 체인 |
+| **LSP** | 하위 타입이 상위 타입을 대체할 수 있는가? | 하위 클래스에서 예외 발생, 빈 메서드 오버라이드 |
+| **ISP** | 클라이언트별로 인터페이스가 분리되어 있는가? | NotImplementedException, 미사용 메서드 |
+| **DIP** | 추상화에 의존하는가? | new 직접 인스턴스화, 구체 클래스 타입 의존 |
 
-**Creational Patterns**
-- Complex object creation → Builder
-- Separate object creation logic → Factory Method / Abstract Factory
-- Global single instance → Singleton (caution: avoid overuse)
+### GoF 디자인 패턴 적용 기회
+코드에서 다음 패턴을 적용할 수 있는 부분을 식별합니다:
 
-**Structural Patterns**
-- Incompatible interface connection → Adapter
-- Dynamic feature addition → Decorator
-- Simplify complex subsystems → Facade
-- Object tree structures → Composite
+**생성 패턴**
+- 복잡한 객체 생성 → Builder
+- 객체 생성 로직 분리 → Factory Method / Abstract Factory
+- 전역 단일 인스턴스 → Singleton (주의: 남용 금지)
 
-**Behavioral Patterns**
-- Interchangeable algorithms → Strategy
-- State-dependent behavior changes → State
-- Object communication → Observer / Mediator
-- Request processing chain → Chain of Responsibility
-- Undo/Redo → Command + Memento
+**구조 패턴**
+- 호환되지 않는 인터페이스 연결 → Adapter
+- 동적 기능 추가 → Decorator
+- 복잡한 하위 시스템 단순화 → Facade
+- 객체 트리 구조 → Composite
 
-### Modern C# Features (C# 12/13)
-| Feature | When to Recommend |
-|---------|-------------------|
-| **Primary constructors** | Classes with simple initialization |
-| **Collection expressions** | Array/List initialization `[1, 2, 3]` |
-| **required properties** | Required initialization without constructor |
-| **init-only setters** | Immutable objects |
-| **record types** | Value-based equality, DTOs |
-| **Pattern matching** | Complex conditionals, type checking |
-| **File-scoped namespaces** | Reduce indentation |
-| **Raw string literals** | Multiline strings, JSON, SQL |
+**행동 패턴**
+- 교체 가능한 알고리즘 → Strategy
+- 상태에 따른 행동 변경 → State
+- 객체 간 통신 → Observer / Mediator
+- 요청 처리 체인 → Chain of Responsibility
+- 실행 취소/재실행 → Command + Memento
 
-### Performance Review
-| Category | Review Items |
-|----------|--------------|
-| **Memory Allocation** | Unnecessary allocations in hot paths, Large Object Heap (>= 85KB) |
-| **Async/Await** | Blocking calls (.Result, .Wait()), missing ConfigureAwait |
-| **Collections** | Wrong collection type, multiple LINQ enumerations |
-| **Strings** | String concatenation in loops, missing StringBuilder |
-| **Boxing** | Unnecessary value type boxing |
-| **Span/Memory** | Buffer operations without Span<T>, Memory<T> |
+### 최신 C# 기능 (C# 12/13)
+| 기능 | 권장 시점 |
+|------|-----------|
+| **Primary constructors** | 간단한 초기화를 가진 클래스 |
+| **Collection expressions** | 배열/리스트 초기화 `[1, 2, 3]` |
+| **required 프로퍼티** | 생성자 없이 필수 초기화 보장 |
+| **init-only setters** | 불변 객체 |
+| **record 타입** | 값 기반 동등성, DTO |
+| **패턴 매칭** | 복잡한 조건문, 타입 검사 |
+| **파일 범위 네임스페이스** | 들여쓰기 축소 |
+| **Raw string 리터럴** | 여러 줄 문자열, JSON, SQL |
 
-### Async Code Review
-- [ ] No `.Result` or `.Wait()` calls (deadlock risk)
-- [ ] `ConfigureAwait(false)` in library code
-- [ ] Proper cancellation token propagation
-- [ ] `ValueTask` for hot paths with cached results
-- [ ] `IAsyncEnumerable` for streaming data
-- [ ] No async void except event handlers
+### 성능 리뷰
+| 카테고리 | 리뷰 항목 |
+|----------|-----------|
+| **메모리 할당** | 핫 경로에서 불필요한 할당, Large Object Heap (>= 85KB) |
+| **Async/Await** | 차단 호출 (.Result, .Wait()), ConfigureAwait 누락 |
+| **컬렉션** | 잘못된 컬렉션 타입, LINQ 다중 열거 |
+| **문자열** | 루프 내 문자열 결합, StringBuilder 미사용 |
+| **박싱** | 불필요한 값 타입 박싱 |
+| **Span/Memory** | Span<T>, Memory<T> 없는 버퍼 연산 |
 
-### Code Quality Review
-- [ ] Naming conventions (PascalCase, camelCase, _privateField, Async suffix)
-- [ ] Null safety (nullable reference types, `?.`, `??`, `??=`)
-- [ ] Exception handling (specific exceptions, `when` filters, proper logging)
-- [ ] IDisposable pattern compliance (using statements, Dispose implementation)
-- [ ] Collection usage (appropriate type selection, efficient LINQ)
-- [ ] Magic numbers/strings should be constants
-- [ ] Duplicate code elimination
-- [ ] Proper use of `sealed` for non-inheritable classes
+### 비동기 코드 리뷰
+- [ ] `.Result` 또는 `.Wait()` 호출 없음 (데드락 위험)
+- [ ] 라이브러리 코드에서 `ConfigureAwait(false)` 사용
+- [ ] 적절한 CancellationToken 전파
+- [ ] 캐시된 결과가 있는 핫 경로에 `ValueTask` 사용
+- [ ] 스트리밍 데이터에 `IAsyncEnumerable` 사용
+- [ ] 이벤트 핸들러 외 async void 없음
 
-### Security Review
-- [ ] Input validation (SQL injection, XSS, path traversal)
-- [ ] Sensitive data handling (no hardcoded secrets, proper encryption)
-- [ ] Authentication/Authorization checks
-- [ ] Secure randomness (avoid `Random` for security)
-- [ ] XML external entity (XXE) prevention
+### 코드 품질 리뷰
+- [ ] 명명 규칙 (PascalCase, camelCase, _privateField, Async 접미사)
+- [ ] null 안전성 (nullable reference types, `?.`, `??`, `??=`)
+- [ ] 예외 처리 (구체적 예외, `when` 필터, 적절한 로깅)
+- [ ] IDisposable 패턴 준수 (using 문, Dispose 구현)
+- [ ] 컬렉션 사용 (적절한 타입 선택, 효율적인 LINQ)
+- [ ] 매직 넘버/문자열은 상수로 선언
+- [ ] 중복 코드 제거
+- [ ] 상속 불필요 클래스에 `sealed` 적절히 사용
 
-## Step 3: Output Review Results
+### 보안 리뷰
+- [ ] 입력 유효성 검사 (SQL Injection, XSS, 경로 탐색)
+- [ ] 민감 데이터 처리 (하드코딩된 비밀 없음, 적절한 암호화)
+- [ ] 인증/권한 확인
+- [ ] 보안 난수 생성 (`Random` 보안 용도 사용 금지)
+- [ ] XML External Entity (XXE) 방지
 
-### Output Format
+## 3단계: 리뷰 결과 출력
+
+### 출력 형식
+
+모든 내용은 **한국어**로 작성합니다. 코드 식별자와 기술 용어는 원문을 유지합니다.
 
 ```markdown
-# Code Review Results
+# 코드 리뷰 결과
 
-## Summary
-- File: {file path}
-- Overall Assessment: {Excellent/Good/Needs Improvement/Critical}
-- Major Issues: {N} items
-- .NET Version Compliance: {.NET 8/9 features utilization}
+## 요약
+- 파일: {파일 경로}
+- 종합 평가: {우수/양호/개선 필요/심각}
+- 주요 이슈: {N}건
+- .NET 버전 준수: {.NET 8/9 기능 활용도}
 
-## SOLID Principles Analysis
+## SOLID 원칙 분석
 
-### SRP Violation (Severity: High/Medium/Low)
-- Location: `ClassName.cs:line`
-- Problem: {description}
-- Suggestion: {improvement with code example}
+### SRP 위반 (심각도: 높음/보통/낮음)
+- 위치: `ClassName.cs:line`
+- 문제: {설명}
+- 개선안: {코드 예시 포함}
 
-### OCP Violation
+### OCP 위반
 ...
 
-## Modern C# Opportunities
+## 최신 C# 기능 적용 기회
 
-### {Feature Name} Recommendation
-- Location: `file.cs:line`
-- Current: {old syntax}
-- Improved: {modern C# syntax}
-- Benefit: {explanation}
+### {기능명} 권장
+- 위치: `file.cs:line`
+- 현재: {기존 코드}
+- 개선: {최신 C# 문법}
+- 이점: {설명}
 
-## Performance Issues
+## 성능 이슈
 
-### {Issue Title} (Severity: High/Medium/Low)
-- Location: `file.cs:line`
-- Problem: {description with impact}
-- Current: {problematic code}
-- Improved: {optimized code}
-- Impact: {expected improvement}
+### {이슈 제목} (심각도: 높음/보통/낮음)
+- 위치: `file.cs:line`
+- 문제: {영향 포함 설명}
+- 현재: {문제 코드}
+- 개선: {최적화 코드}
+- 효과: {예상 개선점}
 
-## Async Code Issues
+## 비동기 코드 이슈
 
-### {Issue Title}
-- Location: `file.cs:line`
-- Problem: {description}
-- Risk: {deadlock/performance/etc}
-- Solution: {code fix}
+### {이슈 제목}
+- 위치: `file.cs:line`
+- 문제: {설명}
+- 위험: {데드락/성능/기타}
+- 해결: {코드 수정}
 
-## Applicable Design Patterns
+## 적용 가능한 디자인 패턴
 
-### {Pattern Name} Pattern Recommended
-- Current code: {problem}
-- Benefits of applying: {description}
-- Example code: {brief example}
+### {패턴명} 패턴 권장
+- 현재 코드: {문제점}
+- 적용 시 이점: {설명}
+- 예시 코드: {간략 예시}
 
-## Security Concerns
+## 보안 우려사항
 
-### {Issue Title} (Severity: Critical/High/Medium/Low)
-- Location: `file.cs:line`
-- Vulnerability: {description}
-- Remediation: {fix with code}
+### {이슈 제목} (심각도: 심각/높음/보통/낮음)
+- 위치: `file.cs:line`
+- 취약점: {설명}
+- 해결: {코드 수정}
 
-## Code Quality Issues
+## 코드 품질 이슈
 
-### {Issue Title}
-- Location: `file.cs:line`
-- Current: {code}
-- Improved: {code}
+### {이슈 제목}
+- 위치: `file.cs:line`
+- 현재: {코드}
+- 개선: {코드}
 
-## Prioritized Improvements
-1. [Critical] {security issues}
-2. [High] {SOLID violations, performance issues}
-3. [Medium] {code quality, modern features}
-4. [Low] {style improvements}
+## 우선순위별 개선 사항
+1. [심각] {보안 이슈}
+2. [높음] {SOLID 위반, 성능 이슈}
+3. [보통] {코드 품질, 최신 기능 적용}
+4. [낮음] {스타일 개선}
 ```
 
-## Guidelines
-- Only report issues that need fixing. Do not include positive feedback.
-- Provide improvements with concrete code examples.
-- Don't recommend over-engineering.
-- Make practical suggestions considering context.
-- Prioritize security issues first.
-- Consider the target .NET version when suggesting features.
-- Balance between modern features and team familiarity.
+## 가이드라인
+- 수정이 필요한 이슈만 보고합니다. 긍정적 피드백은 포함하지 않습니다.
+- 구체적인 코드 예시와 함께 개선안을 제시합니다.
+- 과도한 엔지니어링을 권장하지 않습니다.
+- 맥락을 고려한 실용적인 제안을 합니다.
+- 보안 이슈를 최우선으로 다룹니다.
+- 대상 .NET 버전을 고려하여 기능을 제안합니다.
+- 최신 기능과 팀 친숙도 사이의 균형을 고려합니다.
