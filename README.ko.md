@@ -1,6 +1,6 @@
 # C# Marketplace Plugin
 
-[![Version](https://img.shields.io/badge/version-1.6.1-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-1.7.0-blue.svg)]()
 [![.NET](https://img.shields.io/badge/.NET-8%2F9-purple.svg)]()
 [![C#](https://img.shields.io/badge/C%23-12%2F13-green.svg)]()
 [![Claude Code](https://img.shields.io/badge/Claude_Code-2.1.3+-orange.svg)]()
@@ -267,6 +267,20 @@ c-sharp-marketplace/
 - Visual Studio 2022 / JetBrains Rider
 
 ## 변경 이력
+
+### v1.7.0 (2026-02-06)
+
+**스킬 한국어 전환 및 품질 개선**
+
+사용자에게 보고하는 모든 스킬의 출력을 한국어로 전환하고, 체계적인 감사를 통해 스킬 품질을 개선했습니다.
+
+| 변경 사항 | 설명 |
+|-----------|------|
+| **csharp-code-review** (수정) | SKILL.md 본문 한국어 전환; 출력 형식 템플릿 한국어화; 기술 용어 일관성 통일 |
+| **csharp-refactor** (수정) | SKILL.md 본문 한국어 전환; Modern C# 문법 테이블에 최소 버전 표기 추가; TargetFramework 감지 로직 추가; 에러 처리 섹션 추가 |
+| **wpf-mvvm-generator** (수정) | SKILL.md 본문 한국어 전환; `all` 옵션이 6개 컴포넌트 생성 명시; 엔티티 이름 검증 추가; 에러 처리 섹션 추가; Glob 패턴을 활용한 프로젝트 구조 탐색 구체화 |
+
+---
 
 ### v1.6.1 (2026-02-03)
 

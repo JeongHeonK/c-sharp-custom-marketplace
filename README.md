@@ -1,6 +1,6 @@
 # C# Marketplace Plugin
 
-[![Version](https://img.shields.io/badge/version-1.6.1-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-1.7.0-blue.svg)]()
 [![.NET](https://img.shields.io/badge/.NET-8%2F9-purple.svg)]()
 [![C#](https://img.shields.io/badge/C%23-12%2F13-green.svg)]()
 [![Claude Code](https://img.shields.io/badge/Claude_Code-2.1.3+-orange.svg)]()
@@ -269,6 +269,20 @@ Add "use context7" to your prompt for documentation search:
 - Visual Studio 2022 / JetBrains Rider
 
 ## Changelog
+
+### v1.7.0 (2026-02-06)
+
+**Skills Localization & Quality Improvements**
+
+Converted all user-facing skill outputs to Korean and improved skill quality based on systematic audit.
+
+| Change | Description |
+|--------|-------------|
+| **csharp-code-review** (Updated) | SKILL.md body localized to Korean; output format template fully translated; technical term consistency enforced |
+| **csharp-refactor** (Updated) | SKILL.md body localized to Korean; added C# version annotations to Modern syntax table; added TargetFramework detection; added error handling section |
+| **wpf-mvvm-generator** (Updated) | SKILL.md body localized to Korean; clarified `all` option generates 6 component types; added entity name validation; added error handling section; improved project structure scanning with Glob patterns |
+
+---
 
 ### v1.6.1 (2026-02-03)
 

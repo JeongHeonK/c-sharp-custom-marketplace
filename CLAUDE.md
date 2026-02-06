@@ -4,7 +4,7 @@
 
 ## Overview
 
-C#/.NET 및 WPF 개발을 위한 Claude Code 플러그인 마켓플레이스 (v1.6.1)
+C#/.NET 및 WPF 개발을 위한 Claude Code 플러그인 마켓플레이스 (v1.7.0)
 
 - **GitHub**: `JeongHeonK/c-sharp-custom-marketplace`
 - **License**: MIT
@@ -55,7 +55,7 @@ rules/    → 스킬 내부 knowledge-base (skills/*/rules/)
 │   ├── csharp-refactor/SKILL.md
 │   ├── csharp-best-practices/
 │   │   ├── SKILL.md
-│   │   └── rules/                # 14개 규칙 파일 (cs12-*, modern-*)
+│   │   └── rules/                # 12개 규칙 파일 (cs12-*, modern-*)
 │   ├── csharp-tdd-develop/
 │   │   ├── SKILL.md
 │   │   └── scripts/              # test-detector.js
