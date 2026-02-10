@@ -35,8 +35,8 @@ TDD(Test-Driven Development) 워크플로우 조율 스킬. 순서를 강제하�
 │  ├── Phase 3 GREEN ───────── 최소 구현 + dotnet test 통과   │
 │  └── Phase 4 REFACTOR ────── 코드 정리 + 회귀 방지         │
 │                                                             │
-│  ※ csharp-best-practices 규칙 자동 적용                    │
-│  ※ csharp-test-develop 테스트 패턴 참조                    │
+│  ※ csharp-best-practices 규칙 참조 가능                    │
+│  ※ csharp-test-develop 테스트 패턴 참조 가능               │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -313,13 +313,10 @@ csharp-tdd-develop (Orchestrator)
     │
     └── general-purpose sub-agent
             │
-            └── skills:
-                  ├── csharp-best-practices ← 12개 규칙 자동 적용
-                  │     ├── rules/cs12-primary-constructor.md
-                  │     ├── rules/cs12-collection-expression.md
-                  │     └── ...
-                  └── csharp-test-develop ← 테스트 패턴 참조
-                        └── references/csharp-test-patterns.md
+            └── 참조 가능 리소스:
+                  ├── csharp-best-practices/rules/ ← 12개 규칙 (필요시 Read)
+                  └── csharp-test-develop/references/
+                        └── csharp-test-patterns.md ← 테스트 패턴 (필요시 Read)
 ```
 
 ---

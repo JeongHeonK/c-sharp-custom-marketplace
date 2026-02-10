@@ -32,7 +32,7 @@ allowed-tools:
 │  Sub-agent (Executor)                                        │
 │  └── 테스트 코드 작성 ────── references/csharp-test-patterns│
 │                                                             │
-│  ※ csharp-best-practices 규칙 자동 적용                    │
+│  ※ csharp-best-practices 규칙 참조 가능                    │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -219,10 +219,10 @@ csharp-test-develop (Orchestrator)
     │
     └── general-purpose sub-agent
             │
-            └── skills:
-                  ├── csharp-best-practices ← C# 12 규칙 적용
+            └── 참조 가능 리소스:
+                  ├── csharp-best-practices/rules/ ← C# 12 규칙 (필요시 Read)
                   └── references/
-                        └── csharp-test-patterns.md ← 테스트 패턴 참조
+                        └── csharp-test-patterns.md ← 테스트 패턴 (필요시 Read)
 ```
 
 ---
