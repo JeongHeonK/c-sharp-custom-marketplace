@@ -1,6 +1,6 @@
 # C# Marketplace Plugin
 
-[![Version](https://img.shields.io/badge/version-1.7.0-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-1.8.0-blue.svg)]()
 [![.NET](https://img.shields.io/badge/.NET-8%2F9-purple.svg)]()
 [![C#](https://img.shields.io/badge/C%23-12%2F13-green.svg)]()
 [![Claude Code](https://img.shields.io/badge/Claude_Code-2.1.3+-orange.svg)]()
@@ -237,6 +237,21 @@ c-sharp-marketplace/
 - Visual Studio 2022 / JetBrains Rider
 
 ## 변경 이력
+
+### v1.8.0 (2026-02-10)
+
+**커스텀 에이전트 제거 — npx skills 호환성 확보**
+
+`agents/` 디렉토리를 제거하고 `general-purpose` 서브에이전트 위임 방식으로 전환하여 `npx skills add` 완벽 호환을 확보했습니다. 에이전트의 전문 지식은 프롬프트 인라인 컨텍스트와 기존 rules/references로 제공됩니다.
+
+| 변경 사항 | 설명 |
+|-----------|------|
+| **agents/** (삭제) | `csharp-expert.md`, `wpf-expert.md`, `AGENTS.md` 제거 |
+| **csharp-tdd-develop** (수정) | `general-purpose` 서브에이전트로 전환; Task 프롬프트에 C# 전문가 컨텍스트 추가 |
+| **csharp-test-develop** (수정) | csharp-tdd-develop과 동일한 변경 적용 |
+| **CLAUDE.md** (수정) | 3-tier → 2-tier 아키텍처 문서화 |
+
+---
 
 ### v1.7.0 (2026-02-06)
 

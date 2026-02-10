@@ -1,6 +1,6 @@
 # C# Marketplace Plugin
 
-[![Version](https://img.shields.io/badge/version-1.7.0-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-1.8.0-blue.svg)]()
 [![.NET](https://img.shields.io/badge/.NET-8%2F9-purple.svg)]()
 [![C#](https://img.shields.io/badge/C%23-12%2F13-green.svg)]()
 [![Claude Code](https://img.shields.io/badge/Claude_Code-2.1.3+-orange.svg)]()
@@ -239,6 +239,21 @@ Add "use context7" to your prompt for documentation search:
 - Visual Studio 2022 / JetBrains Rider
 
 ## Changelog
+
+### v1.8.0 (2026-02-10)
+
+**Remove Custom Agents — npx skills Compatibility**
+
+Removed `agents/` directory and switched to `general-purpose` sub-agent delegation for full `npx skills add` compatibility. Agent expertise is now provided via inline prompt context and existing rules/references.
+
+| Change | Description |
+|--------|-------------|
+| **agents/** (Removed) | Removed `csharp-expert.md`, `wpf-expert.md`, `AGENTS.md` |
+| **csharp-tdd-develop** (Updated) | Switched to `general-purpose` sub-agent; added C# expert context to Task prompts |
+| **csharp-test-develop** (Updated) | Same changes as csharp-tdd-develop |
+| **CLAUDE.md** (Updated) | 3-tier → 2-tier architecture documentation |
+
+---
 
 ### v1.7.0 (2026-02-06)
 

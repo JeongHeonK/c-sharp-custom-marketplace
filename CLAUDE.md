@@ -4,7 +4,7 @@
 
 ## Overview
 
-C#/.NET 및 WPF 개발을 위한 Claude Code 플러그인 마켓플레이스 (v1.7.0)
+C#/.NET 및 WPF 개발을 위한 Claude Code 플러그인 마켓플레이스 (v1.8.0)
 
 - **GitHub**: `JeongHeonK/c-sharp-custom-marketplace`
 - **License**: MIT
