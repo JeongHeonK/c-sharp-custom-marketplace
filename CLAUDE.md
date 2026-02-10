@@ -12,11 +12,10 @@ C#/.NET 및 WPF 개발을 위한 Claude Code 플러그인 마켓플레이스 (v1
 
 ## Architecture
 
-### 3-tier 구조
+### 2-tier 구조
 
 ```
-agents/   → 전문가 에이전트 (실제 작업 수행)
-skills/   → 사용자 호출 스킬 (워크플로우 정의, 에이전트에 위임)
+skills/   → 사용자 호출 스킬 (워크플로우 정의, Task로 서브에이전트에 위임)
 rules/    → 스킬 내부 knowledge-base (skills/*/rules/)
 ```
 
@@ -25,15 +24,15 @@ rules/    → 스킬 내부 knowledge-base (skills/*/rules/)
 | 역할 | 모델 | 예시 |
 |------|------|------|
 | 오케스트레이션 (복잡한 워크플로우 조율) | Opus | `csharp-tdd-develop`, `csharp-test-develop` |
-| 전문가 에이전트 (실제 코드 작성/분석) | Sonnet | `csharp-expert`, `wpf-expert` |
+| 서브에이전트 (Task 위임, 실제 코드 작성) | 미지정 (부모 상속) | `general-purpose` |
 | Knowledge-base (가이드라인 참조) | 미지정 (호출측 모델) | `csharp-best-practices` |
 
 ### 위임 패턴
 
-스킬이 오케스트레이터 역할을 하고, `csharp-expert` 에이전트에 실제 작업을 위임:
+스킬이 오케스트레이터 역할을 하고, `general-purpose` 서브에이전트에 실제 작업을 위임:
 
 ```
-사용자 → /csharp-tdd-develop → (워크플로우 조율) → Task(csharp-expert) → 코드 작성
+사용자 → /csharp-tdd-develop → (워크플로우 조율) → Task(general-purpose) → 코드 작성
 ```
 
 ### 스킬 context 모드
@@ -47,9 +46,6 @@ rules/    → 스킬 내부 knowledge-base (skills/*/rules/)
 
 ```
 /
-├── agents/
-│   ├── csharp-expert.md          # C#/.NET 전문가 에이전트
-│   └── wpf-expert.md             # WPF/MVVM 전문가 에이전트
 ├── skills/
 │   ├── csharp-code-review/SKILL.md
 │   ├── csharp-refactor/SKILL.md
@@ -77,25 +73,6 @@ rules/    → 스킬 내부 knowledge-base (skills/*/rules/)
 
 ## YAML Frontmatter 필수 필드
 
-### Agent (`agents/*.md`)
-
-```yaml
-name: <agent-name>
-description: <영문 설명>
-model: sonnet | opus | haiku
-permissionMode: default
-allowed-tools:
-  - Read
-  - Glob
-  - Grep
-  - Edit
-  - Write
-  - Bash(dotnet *)
-  - Bash(nuget *)
-disallowedTools:
-  - WebSearch
-```
-
 ### Skill (`skills/*/SKILL.md`)
 
 ```yaml
@@ -117,7 +94,6 @@ allowed-tools:
 | 파일 | 언어 |
 |------|------|
 | SKILL.md 본문 | 한국어 |
-| Agent .md 본문 | 영어 |
 | README.md | 영어 |
 | README.ko.md | 한국어 |
 | Git 커밋 메시지 | 한국어 (Conventional Commits) |
@@ -161,7 +137,7 @@ allowed-tools:
 ### 스킬 작성 규칙
 - Knowledge-base 스킬: `allowed-tools`에 Read, Glob, Grep만. Edit/Write 불가.
 - Fork 스킬: 독립 실행 가능한 결과물 생성. 호출자 컨텍스트 의존 불가.
-- Current+Task 스킬: SKILL.md에 오케스트레이션만. 실제 코드 작업은 Task로 에이전트 위임.
+- Current+Task 스킬: SKILL.md에 오케스트레이션만. 실제 코드 작업은 Task(general-purpose)로 위임.
 
 ### 테스트
 - 스킬 수정 후 대표 인자로 직접 호출하여 검증.
