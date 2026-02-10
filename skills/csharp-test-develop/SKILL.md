@@ -1,6 +1,6 @@
 ---
 name: csharp-test-develop
-description: C#/.NET 테스트 코드 작성. 기존 코드에 대한 단위/통합 테스트를 xUnit, Moq, FluentAssertions 기반으로 생성. csharp-expert agent에 위임.
+description: C#/.NET 테스트 코드 작성. 기존 코드에 대한 단위/통합 테스트를 xUnit, Moq, FluentAssertions 기반으로 생성. 서브에이전트에 위임.
 user-invocable: true
 context: current
 model: opus
@@ -29,7 +29,7 @@ allowed-tools:
 │  ├── Phase 1: 분석 ───────── 대상 코드 → 테스트 시나리오   │
 │  └── Phase 2: 검증 ───────── dotnet test 통과 확인          │
 ├─────────────────────────────────────────────────────────────┤
-│  csharp-expert agent (Executor)                             │
+│  Sub-agent (Executor)                                        │
 │  └── 테스트 코드 작성 ────── references/csharp-test-patterns│
 │                                                             │
 │  ※ csharp-best-practices 규칙 자동 적용                    │
@@ -96,14 +96,15 @@ node skills/csharp-tdd-develop/scripts/test-detector.js --detect
 
 ---
 
-### Phase 2: 테스트 작성 (csharp-expert 위임)
+### Phase 2: 테스트 작성 (서브에이전트 위임)
 
 **Task tool로 위임:**
 ```
 Task({
-  subagent_type: "csharp-expert",
+  subagent_type: "general-purpose",
   prompt: `
 기존 코드에 대한 단위 테스트를 작성하세요.
+SOLID 원칙, GoF 디자인 패턴, Modern C# 12/13 기능을 적용하세요.
 
 ## 대상
 - 클래스: OrderService
@@ -178,7 +179,7 @@ Runner: xUnit ✓ | FluentAssertions: YES ✓ | Moq: YES ✓
 ---
 
 ## Phase 2: 테스트 작성
-→ csharp-expert agent 호출
+→ 서브에이전트 호출
 ← 테스트 파일 생성, 모든 테스트 통과 ✅
 
 ---
@@ -216,7 +217,7 @@ Runner: xUnit ✓ | FluentAssertions: YES ✓ | Moq: YES ✓
 ```
 csharp-test-develop (Orchestrator)
     │
-    └── csharp-expert agent
+    └── general-purpose sub-agent
             │
             └── skills:
                   ├── csharp-best-practices ← C# 12 규칙 적용

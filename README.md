@@ -7,15 +7,9 @@
 
 [**한국어**](README.ko.md)
 
-A Claude Code plugin for C# and WPF development. Provides expert agents and code review/refactoring/MVVM generation skills focused on Modern C# 12/13, OOP principles, SOLID principles, and GoF design patterns.
+A Claude Code plugin for C# and WPF development. Provides code review/refactoring/MVVM generation skills focused on Modern C# 12/13, OOP principles, SOLID principles, and GoF design patterns.
 
 ## Key Features
-
-### Agents
-| Agent | Description |
-|-------|-------------|
-| **C# Expert** | Modern C# 12/13, SOLID principles, GoF patterns, performance optimization expert |
-| **WPF Expert** | CommunityToolkit.Mvvm, MVVM patterns, data binding, Modern UI expert |
 
 ### Skills
 | Skill | Description |
@@ -91,13 +85,9 @@ When installing via the `/plugin` UI, you can choose the scope:
 c-sharp-marketplace/
 ├── .claude-plugin/
 │   └── marketplace.json     # Marketplace manifest
-├── agents/
-│   ├── csharp-expert.md     # C#/.NET expert agent
-│   └── wpf-expert.md        # WPF/MVVM expert agent
 ├── skills/
 │   ├── csharp-best-practices/
 │   │   ├── SKILL.md         # Best practices guideline skill
-│   │   ├── AGENTS.md        # Knowledge-base agent
 │   │   └── rules/           # 12 guideline rule files
 │   ├── csharp-code-review/
 │   │   └── SKILL.md         # Code review skill
@@ -126,29 +116,9 @@ c-sharp-marketplace/
 └── README.md
 ```
 
-> **Note**: After installing the plugin, the `agents/` and `skills/` directories are automatically recognized, enabling slash commands (`/skill-name`) and agent mentions (`@agent-name`). (Claude Code 2.1.3+)
+> **Note**: After installing the plugin, the `skills/` directory is automatically recognized, enabling slash commands (`/skill-name`). (Claude Code 2.1.3+)
 
 ## Usage
-
-### Agents
-
-Agents can be invoked directly using `@agent-name`, or Claude Code will automatically invoke them based on task context.
-
-#### C# Expert Agent (`@csharp-expert`)
-```
-@csharp-expert "Implement a Repository pattern for the User entity"
-@csharp-expert "Refactor this code to follow SOLID principles"
-@csharp-expert "Convert to primary constructors"
-@csharp-expert "Optimize performance using Span<T>"
-```
-
-#### WPF Expert Agent (`@wpf-expert`)
-```
-@wpf-expert "Create a ViewModel using CommunityToolkit.Mvvm"
-@wpf-expert "Implement using [ObservableProperty] and [RelayCommand]"
-@wpf-expert "Implement inter-ViewModel communication with WeakReferenceMessenger"
-@wpf-expert "Create a custom date picker control"
-```
 
 ### Skills
 
@@ -307,7 +277,7 @@ Added new skills for best practices, TDD development, and test code writing. The
 | Change | Description |
 |--------|-------------|
 | **csharp-best-practices** (New) | C# 12/.NET 8 coding guidelines knowledge-base with 12 rule files (modeled after vercel-react-best-practices) |
-| **csharp-tdd-develop** (New) | TDD Red-Green-Refactor workflow orchestrator delegating to csharp-expert |
+| **csharp-tdd-develop** (New) | TDD Red-Green-Refactor workflow orchestrator |
 | **csharp-test-develop** (New) | Test code writing skill for existing code (xUnit/Moq/FluentAssertions) |
 | **csharp-code-review** (Updated) | Removed "Positive Aspects" section — issues only output |
 
@@ -321,7 +291,6 @@ Updated documentation and structure in accordance with the integration of skills
 
 | Change | Description | Related Version |
 |--------|-------------|-----------------|
-| Agent `@mention` invocation | Direct invocation support for `@csharp-expert`, `@wpf-expert` | v2.1.0 |
 | Skill slash commands | Direct invocation via `/csharp-code-review`, etc. | v2.1.3 |
 | `user-invocable` setting | Slash command menu visibility configuration | v2.1.3 |
 | Documentation improvements | Clarified plugin structure and usage | - |
@@ -333,14 +302,6 @@ Updated documentation and structure in accordance with the integration of skills
 **Claude Code 2.1.x Compatibility Update**
 
 This update reflects major changes from the Claude Code 2.0.x ~ 2.1.x release notes.
-
-#### Agent Updates
-| Item | Description | Related Version |
-|------|-------------|-----------------|
-| `model` field | Specify the model for agents (sonnet/opus/haiku) | v2.0.64 |
-| `permissionMode` field | Configure agent permission mode | v2.0.43 |
-| `allowed-tools` | Tool allowlist in YAML list format | v2.1.0 |
-| `disallowedTools` | Explicit tool blocklist | v2.0.30 |
 
 #### Skill Updates
 | Item | Description | Related Version |
@@ -374,7 +335,6 @@ This update reflects major changes from the Claude Code 2.0.x ~ 2.1.x release no
 
 ### v1.0.0
 - Initial release
-- C# Expert, WPF Expert agents
 - Code Review skill
 - Context7 MCP server configuration
 

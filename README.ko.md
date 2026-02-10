@@ -5,15 +5,9 @@
 [![C#](https://img.shields.io/badge/C%23-12%2F13-green.svg)]()
 [![Claude Code](https://img.shields.io/badge/Claude_Code-2.1.3+-orange.svg)]()
 
-C# 및 WPF 개발을 위한 Claude Code 플러그인입니다. Modern C# 12/13, OOP 원칙, SOLID 원칙, GoF 디자인 패턴에 중점을 둔 전문가 에이전트와 코드 리뷰/리팩토링/MVVM 생성 스킬을 제공합니다.
+C# 및 WPF 개발을 위한 Claude Code 플러그인입니다. Modern C# 12/13, OOP 원칙, SOLID 원칙, GoF 디자인 패턴에 중점을 둔 코드 리뷰/리팩토링/MVVM 생성 스킬을 제공합니다.
 
 ## 주요 기능
-
-### Agents
-| Agent | 설명 |
-|-------|------|
-| **C# Expert** | Modern C# 12/13, SOLID 원칙, GoF 패턴, Performance 최적화 전문가 |
-| **WPF Expert** | CommunityToolkit.Mvvm, MVVM 패턴, 데이터 바인딩, Modern UI 전문가 |
 
 ### Skills
 | Skill | 설명 |
@@ -89,13 +83,9 @@ npx skills add JeongHeonK/c-sharp-custom-marketplace --skill csharp-refactor wpf
 c-sharp-marketplace/
 ├── .claude-plugin/
 │   └── marketplace.json     # 마켓플레이스 매니페스트
-├── agents/
-│   ├── csharp-expert.md     # C#/.NET 전문가 에이전트
-│   └── wpf-expert.md        # WPF/MVVM 전문가 에이전트
 ├── skills/
 │   ├── csharp-best-practices/
 │   │   ├── SKILL.md         # 베스트 프랙티스 가이드라인 스킬
-│   │   ├── AGENTS.md        # Knowledge-base 에이전트
 │   │   └── rules/           # 12개 가이드라인 규칙 파일
 │   ├── csharp-code-review/
 │   │   └── SKILL.md         # 코드 리뷰 스킬
@@ -124,29 +114,9 @@ c-sharp-marketplace/
 └── README.md
 ```
 
-> **Note**: 플러그인 설치 후 `agents/`와 `skills/` 디렉토리가 자동으로 인식되어 슬래시 커맨드(`/skill-name`)와 에이전트 멘션(`@agent-name`)을 사용할 수 있습니다. (Claude Code 2.1.3+)
+> **Note**: 플러그인 설치 후 `skills/` 디렉토리가 자동으로 인식되어 슬래시 커맨드(`/skill-name`)를 사용할 수 있습니다. (Claude Code 2.1.3+)
 
 ## 사용법
-
-### Agents
-
-에이전트는 `@agent-name` 형태로 직접 호출하거나, 작업 컨텍스트에 따라 Claude Code가 자동으로 호출합니다.
-
-#### C# Expert Agent (`@csharp-expert`)
-```
-@csharp-expert "User 엔티티에 대한 Repository 패턴 구현해줘"
-@csharp-expert "이 코드를 SOLID 원칙에 맞게 리팩토링해줘"
-@csharp-expert "Primary constructor로 변환해줘"
-@csharp-expert "Span<T>를 사용해서 성능 최적화해줘"
-```
-
-#### WPF Expert Agent (`@wpf-expert`)
-```
-@wpf-expert "CommunityToolkit.Mvvm으로 ViewModel 만들어줘"
-@wpf-expert "[ObservableProperty]와 [RelayCommand] 사용해서 구현해줘"
-@wpf-expert "WeakReferenceMessenger로 ViewModel 간 통신 구현해줘"
-@wpf-expert "날짜 선택용 커스텀 컨트롤 만들어줘"
-```
 
 ### Skills
 
@@ -305,7 +275,7 @@ c-sharp-marketplace/
 | 변경 사항 | 설명 |
 |-----------|------|
 | **csharp-best-practices** (신규) | C# 12/.NET 8 코드 작성 가이드라인 knowledge-base, 12개 규칙 파일 (vercel-react-best-practices 패턴 참조) |
-| **csharp-tdd-develop** (신규) | TDD Red-Green-Refactor 워크플로우 조율, csharp-expert에 위임 |
+| **csharp-tdd-develop** (신규) | TDD Red-Green-Refactor 워크플로우 조율 |
 | **csharp-test-develop** (신규) | 기존 코드에 테스트 코드 작성 (xUnit/Moq/FluentAssertions) |
 | **csharp-code-review** (수정) | "Positive Aspects" 섹션 제거 — 수정할 점만 출력 |
 
@@ -319,7 +289,6 @@ Claude Code 2.1.3+에서 skills와 slash commands가 통합됨에 따라 문서 
 
 | 변경 사항 | 설명 | 관련 버전 |
 |-----------|------|-----------|
-| 에이전트 `@mention` 호출 | `@csharp-expert`, `@wpf-expert` 직접 호출 지원 | v2.1.0 |
 | 스킬 슬래시 커맨드 | `/csharp-code-review` 등 직접 호출 | v2.1.3 |
 | `user-invocable` 설정 | 슬래시 커맨드 메뉴 표시 설정 | v2.1.3 |
 | 문서 개선 | 플러그인 구조 및 사용법 명확화 | - |
@@ -331,14 +300,6 @@ Claude Code 2.1.3+에서 skills와 slash commands가 통합됨에 따라 문서 
 **Claude Code 2.1.x 호환성 업데이트**
 
 이번 업데이트는 Claude Code 2.0.x ~ 2.1.x 릴리스 노트의 주요 변경사항을 반영합니다.
-
-#### Agent 업데이트
-| 항목 | 설명 | 관련 버전 |
-|------|------|-----------|
-| `model` field | 에이전트가 사용할 모델 지정 (sonnet/opus/haiku) | v2.0.64 |
-| `permissionMode` field | 에이전트 권한 모드 설정 | v2.0.43 |
-| `allowed-tools` | YAML 리스트 형태 도구 허용 목록 | v2.1.0 |
-| `disallowedTools` | 명시적 도구 차단 목록 | v2.0.30 |
 
 #### Skill 업데이트
 | 항목 | 설명 | 관련 버전 |
@@ -372,7 +333,6 @@ Claude Code 2.1.3+에서 skills와 slash commands가 통합됨에 따라 문서 
 
 ### v1.0.0
 - 초기 릴리즈
-- C# Expert, WPF Expert 에이전트
 - Code Review 스킬
 - Context7 MCP 서버 설정
 

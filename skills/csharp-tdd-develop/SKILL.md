@@ -1,6 +1,6 @@
 ---
 name: csharp-tdd-develop
-description: TDD 기반 C#/.NET 개발. 테스트 먼저 작성 후 구현. Red-Green-Refactor 순서 강제. csharp-expert agent에 위임.
+description: TDD 기반 C#/.NET 개발. 테스트 먼저 작성 후 구현. Red-Green-Refactor 순서 강제. 서브에이전트에 위임.
 user-invocable: true
 context: current
 model: opus
@@ -18,7 +18,7 @@ allowed-tools:
 
 # C# TDD Develop
 
-TDD(Test-Driven Development) 워크플로우 조율 스킬. 순서를 강제하고, 실제 작업은 `csharp-expert` agent에 위임.
+TDD(Test-Driven Development) 워크플로우 조율 스킬. 순서를 강제하고, 실제 작업은 서브에이전트에 위임.
 
 ## Overview
 
@@ -30,7 +30,7 @@ TDD(Test-Driven Development) 워크플로우 조율 스킬. 순서를 강제하�
 │  ├── Phase 0: 환경 감지 ──── scripts/test-detector.js       │
 │  └── Phase 1: 분석 ───────── 요구사항 → 테스트 시나리오     │
 ├─────────────────────────────────────────────────────────────┤
-│  csharp-expert agent (Executor)                             │
+│  Sub-agent (Executor)                                        │
 │  ├── Phase 2 RED ─────────── 테스트 작성 + dotnet test 실패 │
 │  ├── Phase 3 GREEN ───────── 최소 구현 + dotnet test 통과   │
 │  └── Phase 4 REFACTOR ────── 코드 정리 + 회귀 방지         │
@@ -113,14 +113,15 @@ Test Command: dotnet test
 
 ---
 
-### Phase 2: RED (csharp-expert 위임)
+### Phase 2: RED (서브에이전트 위임)
 
 **Task tool로 위임:**
 ```
 Task({
-  subagent_type: "csharp-expert",
+  subagent_type: "general-purpose",
   prompt: `
 TDD RED 단계를 수행하세요.
+SOLID 원칙, GoF 디자인 패턴, Modern C# 12/13 기능을 적용하세요.
 
 ## 대상 클래스
 - 이름: UserService
@@ -152,14 +153,15 @@ TDD RED 단계를 수행하세요.
 
 ---
 
-### Phase 3: GREEN (csharp-expert 위임)
+### Phase 3: GREEN (서브에이전트 위임)
 
 **Task tool로 위임:**
 ```
 Task({
-  subagent_type: "csharp-expert",
+  subagent_type: "general-purpose",
   prompt: `
 TDD GREEN 단계를 수행하세요.
+SOLID 원칙, GoF 디자인 패턴, Modern C# 12/13 기능을 적용하세요.
 
 ## 대상 클래스
 - 이름: UserService
@@ -185,14 +187,15 @@ TDD GREEN 단계를 수행하세요.
 
 ---
 
-### Phase 4: REFACTOR (csharp-expert 위임)
+### Phase 4: REFACTOR (서브에이전트 위임)
 
 **Task tool로 위임:**
 ```
 Task({
-  subagent_type: "csharp-expert",
+  subagent_type: "general-purpose",
   prompt: `
 TDD REFACTOR 단계를 수행하세요.
+SOLID 원칙, GoF 디자인 패턴, Modern C# 12/13 기능을 적용하세요.
 
 ## 대상 파일
 - 구현: src/Services/UserService.cs
@@ -258,19 +261,19 @@ Runner: xUnit ✓ | FluentAssertions: YES ✓ | Moq: YES ✓
 ---
 
 ## Phase 2: RED
-→ csharp-expert agent 호출
+→ 서브에이전트 호출
 ← 테스트 파일 생성, 실패 확인됨 ❌
 
 ---
 
 ## Phase 3: GREEN
-→ csharp-expert agent 호출
+→ 서브에이전트 호출
 ← 서비스 구현, 테스트 통과 ✅
 
 ---
 
 ## Phase 4: REFACTOR
-→ csharp-expert agent 호출
+→ 서브에이전트 호출
 ← 코드 정리 완료, 테스트 유지 ✅
 
 ---
@@ -308,7 +311,7 @@ Runner: xUnit ✓ | FluentAssertions: YES ✓ | Moq: YES ✓
 ```
 csharp-tdd-develop (Orchestrator)
     │
-    └── csharp-expert agent
+    └── general-purpose sub-agent
             │
             └── skills:
                   ├── csharp-best-practices ← 12개 규칙 자동 적용
