@@ -82,6 +82,7 @@ npx skills add JeongHeonK/c-sharp-custom-marketplace --skill csharp-refactor wpf
 ```
 c-sharp-marketplace/
 ├── .claude-plugin/
+│   ├── plugin.json          # 플러그인 메타데이터
 │   └── marketplace.json     # 마켓플레이스 매니페스트
 ├── skills/
 │   ├── csharp-best-practices/
