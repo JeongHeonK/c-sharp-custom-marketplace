@@ -84,6 +84,7 @@ When installing via the `/plugin` UI, you can choose the scope:
 ```
 c-sharp-marketplace/
 ├── .claude-plugin/
+│   ├── plugin.json          # Plugin metadata
 │   └── marketplace.json     # Marketplace manifest
 ├── skills/
 │   ├── csharp-best-practices/

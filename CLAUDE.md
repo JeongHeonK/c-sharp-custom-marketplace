@@ -65,6 +65,7 @@ rules/    → 스킬 내부 knowledge-base (skills/*/rules/)
 │   │   └── assets/hooks/         # hook 스크립트 (.sh + .ps1)
 │   └── wpf-mvvm-generator/SKILL.md
 ├── .claude-plugin/
+│   ├── plugin.json               # 플러그인 메타데이터
 │   └── marketplace.json          # 마켓플레이스 매니페스트
 ├── .mcp.json                     # MCP 서버 설정 (context7)
 ├── README.md                     # 영문 문서
@@ -100,11 +101,12 @@ allowed-tools:
 
 ## Version Management
 
-버전 변경 시 다음 3곳을 동시에 업데이트:
+버전 변경 시 다음 4곳을 동시에 업데이트:
 
-1. `.claude-plugin/marketplace.json` — `metadata.version` + `plugins[0].version`
-2. `CLAUDE.md` — Overview 섹션의 버전 표기
-3. `README.md` / `README.ko.md` — 배지 및 Changelog 섹션
+1. `.claude-plugin/plugin.json` — `version`
+2. `.claude-plugin/marketplace.json` — `metadata.version` + `plugins[0].version`
+3. `CLAUDE.md` — Overview 섹션의 버전 표기
+4. `README.md` / `README.ko.md` — 배지 및 Changelog 섹션
 
 ## Development Guidelines
 
