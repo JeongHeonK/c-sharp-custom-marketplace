@@ -57,13 +57,18 @@ A Claude Code plugin for C# and WPF development. Provides code review/refactorin
 
 ### Method 1: Install via npx (Recommended)
 ```bash
-# Install all skills
-npx skills add JeongHeonK/c-sharp-custom-marketplace
+# Install all skills (global — enables `npx skills update`)
+npx skills add JeongHeonK/c-sharp-custom-marketplace -g
 
-# Install specific skills only
-npx skills add JeongHeonK/c-sharp-custom-marketplace --skill csharp-code-review
-npx skills add JeongHeonK/c-sharp-custom-marketplace --skill csharp-refactor wpf-mvvm-generator
+# Install specific skills only (global)
+npx skills add JeongHeonK/c-sharp-custom-marketplace --skill csharp-code-review -g
+npx skills add JeongHeonK/c-sharp-custom-marketplace --skill csharp-refactor wpf-mvvm-generator -g
+
+# Install to project scope (does NOT support `npx skills update`)
+npx skills add JeongHeonK/c-sharp-custom-marketplace
 ```
+
+> **Note**: `npx skills update` only tracks globally installed skills (`-g` flag). Project-scoped skills must be updated by re-running `npx skills add`.
 
 ### Method 2: Install via Claude Code UI
 1. Type `/plugin` to open the plugin manager

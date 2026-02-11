@@ -55,13 +55,18 @@ C# 및 WPF 개발을 위한 Claude Code 플러그인입니다. Modern C# 12/13, 
 
 ### 방법 1: npx로 설치 (권장)
 ```bash
-# 모든 스킬 설치
-npx skills add JeongHeonK/c-sharp-custom-marketplace
+# 모든 스킬 설치 (글로벌 — `npx skills update` 지원)
+npx skills add JeongHeonK/c-sharp-custom-marketplace -g
 
-# 특정 스킬만 설치
-npx skills add JeongHeonK/c-sharp-custom-marketplace --skill csharp-code-review
-npx skills add JeongHeonK/c-sharp-custom-marketplace --skill csharp-refactor wpf-mvvm-generator
+# 특정 스킬만 설치 (글로벌)
+npx skills add JeongHeonK/c-sharp-custom-marketplace --skill csharp-code-review -g
+npx skills add JeongHeonK/c-sharp-custom-marketplace --skill csharp-refactor wpf-mvvm-generator -g
+
+# 프로젝트 범위로 설치 (`npx skills update` 미지원)
+npx skills add JeongHeonK/c-sharp-custom-marketplace
 ```
+
+> **Note**: `npx skills update`는 글로벌 설치(`-g` 플래그)된 스킬만 추적합니다. 프로젝트 범위 스킬은 `npx skills add`를 다시 실행하여 업데이트해야 합니다.
 
 ### 방법 2: Claude Code UI에서 설치
 1. `/plugin` 입력하여 플러그인 매니저 열기
